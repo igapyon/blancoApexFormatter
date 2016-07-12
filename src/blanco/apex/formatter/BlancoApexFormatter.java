@@ -15,14 +15,78 @@
  */
 package blanco.apex.formatter;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.StringReader;
+import java.util.List;
+
 import blanco.apex.parser.BlancoApexConstants;
+import blanco.apex.parser.BlancoApexParser;
+import blanco.apex.parser.token.BlancoApexToken;
 import blanco.apex.syntaxparser.BlancoApexSyntaxConstants;
+import blanco.apex.syntaxparser.BlancoApexSyntaxParser;
 
 public class BlancoApexFormatter {
 	public static final void main(final String[] args) {
-		System.err.println("lexical parser: " + BlancoApexConstants.getVersion());
-		System.err.println("syntax parser : " + BlancoApexSyntaxConstants.getVersion());
-		System.err.println("formatter     : " + BlancoApexFormatterConstants.getVersion());
+		System.err.println("blancoApexFormatter: " + BlancoApexFormatterConstants.getVersion());
+		System.err.println("     lexical parser: " + BlancoApexConstants.getVersion());
+		System.err.println("      syntax parser: " + BlancoApexSyntaxConstants.getVersion());
+	}
 
+	public final List<BlancoApexToken> format(final File file) throws IOException {
+		final BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(file), "UTF-8"));
+		try {
+			return format(reader);
+		} finally {
+			reader.close();
+		}
+	}
+
+	public final List<BlancoApexToken> format(final String sourceString) throws IOException {
+		final BufferedReader reader = new BufferedReader(new StringReader(sourceString));
+		try {
+			return format(reader);
+		} finally {
+			reader.close();
+		}
+	}
+
+	public final List<BlancoApexToken> format(final BufferedReader reader) throws IOException {
+		final List<BlancoApexToken> tokenList = new BlancoApexParser().parse(reader);
+		return format(tokenList);
+	}
+
+	/**
+	 * main normalize method.
+	 * 
+	 * @param tokenList
+	 */
+	public List<BlancoApexToken> format(final List<BlancoApexToken> tokenList) {
+		// process relative normalize.
+
+		// need syntac parse to do format.
+
+		// 1st whitespace normalize.
+		new BlancoApexWhitespaceNormalizer().normalize(tokenList);
+
+		final List<BlancoApexToken> syntaxTokenList = new BlancoApexSyntaxParser().parse(tokenList);
+
+		// It seems bad. currently disabled.
+		// new BlancoApexWordCaseNormalizer().normalize(tokenList);
+
+		new BlancoApexBracketNormalizer().normalize(syntaxTokenList);
+
+		new BlancoApexCommaNormalizer().normalize(syntaxTokenList);
+
+		new BlancoApexIndentNormalizer().normalize(syntaxTokenList);
+
+		// 2nd whitespace normalize.
+		// retry to normalize whitespace.
+		new BlancoApexWhitespaceNormalizer().normalize(syntaxTokenList);
+
+		return syntaxTokenList;
 	}
 }
