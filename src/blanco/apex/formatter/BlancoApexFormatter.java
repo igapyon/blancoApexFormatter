@@ -15,10 +15,14 @@
  */
 package blanco.apex.formatter;
 
+import blanco.apex.parser.BlancoApexConstants;
+import blanco.apex.syntaxparser.BlancoApexSyntaxConstants;
+
 public class BlancoApexFormatter {
 	public static final void main(final String[] args) {
-		// TODO to be implemented.
+		System.err.println("lexical parser: " + BlancoApexConstants.getVersion());
+		System.err.println("syntax parser : " + BlancoApexSyntaxConstants.getVersion());
+		System.err.println("formatter     : " + BlancoApexFormatterConstants.getVersion());
 
-		// need syntac parse to do format.
 	}
 }
