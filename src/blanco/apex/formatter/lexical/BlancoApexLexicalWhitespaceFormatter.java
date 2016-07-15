@@ -41,10 +41,14 @@ public class BlancoApexLexicalWhitespaceFormatter {
 	public void format(final List<BlancoApexToken> tokenList) {
 		// process simple normalize.
 		for (BlancoApexToken lookup : tokenList) {
+			// normalize tab and FULL_WIDTH_SPACE
 			normalizeToken(lookup);
 		}
 
+		//////////////////////////////////////
 		// process relative normalize.
+
+		// remove whitespace only line.
 		for (int index = 1; index < tokenList.size() - 1; index++) {
 			if (tokenList.get(index) instanceof BlancoApexWhitespaceToken) {
 				if (tokenList.get(index - 1) instanceof BlancoApexNewlineToken
@@ -55,6 +59,8 @@ public class BlancoApexLexicalWhitespaceFormatter {
 				}
 			}
 		}
+
+		// remove whitespace that end line with whitespace.
 		for (int index = 0; index < tokenList.size() - 1; index++) {
 			if (tokenList.get(index) instanceof BlancoApexWhitespaceToken
 					&& tokenList.get(index + 1) instanceof BlancoApexNewlineToken) {
@@ -75,6 +81,7 @@ public class BlancoApexLexicalWhitespaceFormatter {
 	}
 
 	/**
+	 * normalize tab and FULL_WIDTH_SPACE
 	 * 
 	 * <ul>
 	 * <li>tab into 4 spaces.</li>
