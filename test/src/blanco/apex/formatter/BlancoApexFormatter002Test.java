@@ -10,7 +10,8 @@ import blanco.apex.parser.BlancoApexParserUtil;
 import blanco.apex.parser.token.BlancoApexToken;
 
 public class BlancoApexFormatter002Test {
-	private static final String TARGET_FILE1 = "/home/tosiki/workspace/apex-lang/src.apex/ArrayUtils.cls";
+	private static final String TARGET_FILE1 = "./test/data/apex/MySimpleTest.cls";
+//	private static final String TARGET_FILE1 = "/home/tosiki/workspace/apex-lang/src.apex/ArrayUtils.cls";
 
 	@Test
 	public void test() throws IOException {
