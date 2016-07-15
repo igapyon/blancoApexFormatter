@@ -57,11 +57,20 @@ public class BlancoApexLexicalWhitespaceSmasher {
 				}
 			}
 
+			// smash SPECIAL WHITESPACE SPECIAL
+			for (int index = 0; index < tokenList.size() - 2; index++) {
+				if (tokenList.get(index) instanceof BlancoApexSpecialCharToken
+						&& tokenList.get(index + 1) instanceof BlancoApexWhitespaceToken
+						&& tokenList.get(index + 2) instanceof BlancoApexSpecialCharToken) {
+					tokenList.remove(index + 1);
+					isProcessed = true;
+				}
+			}
+
 			// smash SPECIAL WHITESPACE WORD
 			for (int index = 0; index < tokenList.size() - 2; index++) {
 				if (tokenList.get(index) instanceof BlancoApexSpecialCharToken
-						&& (tokenList.get(index + 1) instanceof BlancoApexWhitespaceToken
-								|| tokenList.get(index + 1) instanceof BlancoApexNewlineToken)
+						&& tokenList.get(index + 1) instanceof BlancoApexWhitespaceToken
 						&& tokenList.get(index + 2) instanceof BlancoApexWordToken) {
 					tokenList.remove(index + 1);
 					isProcessed = true;
