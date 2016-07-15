@@ -17,6 +17,7 @@ package blanco.apex.formatter.lexical;
 
 import java.util.List;
 
+import blanco.apex.parser.token.BlancoApexLiteralToken;
 import blanco.apex.parser.token.BlancoApexNewlineToken;
 import blanco.apex.parser.token.BlancoApexSpecialCharToken;
 import blanco.apex.parser.token.BlancoApexToken;
@@ -24,7 +25,7 @@ import blanco.apex.parser.token.BlancoApexWhitespaceToken;
 import blanco.apex.parser.token.BlancoApexWordToken;
 
 /**
- * Smash whitespaces.
+ * Smash whitespaces. for ease of test purpose.
  * 
  * @author Toshiki Iga
  */
@@ -46,9 +47,10 @@ public class BlancoApexLexicalWhitespaceSmasher {
 				}
 			}
 
-			// smash WORD WHITESPACE SPECIAL
+			// smash WORD|LITERAL WHITESPACE SPECIAL
 			for (int index = 0; index < tokenList.size() - 2; index++) {
-				if (tokenList.get(index) instanceof BlancoApexWordToken
+				if ((tokenList.get(index) instanceof BlancoApexWordToken
+						|| tokenList.get(index) instanceof BlancoApexLiteralToken)
 						&& (tokenList.get(index + 1) instanceof BlancoApexWhitespaceToken
 								|| tokenList.get(index + 1) instanceof BlancoApexNewlineToken)
 						&& tokenList.get(index + 2) instanceof BlancoApexSpecialCharToken) {
@@ -67,13 +69,25 @@ public class BlancoApexLexicalWhitespaceSmasher {
 				}
 			}
 
-			// smash SPECIAL WHITESPACE WORD
+			// smash SPECIAL WHITESPACE WORD|LITERAL
 			for (int index = 0; index < tokenList.size() - 2; index++) {
 				if (tokenList.get(index) instanceof BlancoApexSpecialCharToken
 						&& tokenList.get(index + 1) instanceof BlancoApexWhitespaceToken
-						&& tokenList.get(index + 2) instanceof BlancoApexWordToken) {
+						&& (tokenList.get(index + 2) instanceof BlancoApexWordToken
+								|| tokenList.get(index + 2) instanceof BlancoApexLiteralToken)) {
 					tokenList.remove(index + 1);
 					isProcessed = true;
+				}
+			}
+
+			// smash trailing whitespace
+			for (int index = 0; index < tokenList.size(); index++) {
+				if (tokenList.get(index) instanceof BlancoApexWhitespaceToken) {
+					final BlancoApexWhitespaceToken look = (BlancoApexWhitespaceToken) tokenList.get(index);
+					if (look.getValue().length() > 1) {
+						look.setValue(" ");
+						isProcessed = true;
+					}
 				}
 			}
 
