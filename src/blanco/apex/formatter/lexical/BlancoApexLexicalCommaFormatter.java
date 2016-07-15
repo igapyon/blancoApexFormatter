@@ -22,7 +22,7 @@ import blanco.apex.parser.token.BlancoApexToken;
 import blanco.apex.parser.token.BlancoApexWhitespaceToken;
 
 /**
- * Normalize comma.
+ * Format comma.
  * 
  * @author Toshiki Iga
  */

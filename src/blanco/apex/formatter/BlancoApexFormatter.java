@@ -26,6 +26,7 @@ import java.util.List;
 import blanco.apex.formatter.lexical.BlancoApexLexicalCommaFormatter;
 import blanco.apex.formatter.lexical.BlancoApexLexicalWhitespaceFormatter;
 import blanco.apex.formatter.lexical.BlancoApexLexicalWhitespaceSmasher;
+import blanco.apex.formatter.syntax.BlancoApexSyntaxIndentFormatter;
 import blanco.apex.parser.BlancoApexConstants;
 import blanco.apex.parser.BlancoApexParser;
 import blanco.apex.parser.token.BlancoApexToken;
@@ -78,6 +79,8 @@ public class BlancoApexFormatter {
 
 		// convert lexical list to syntax list.
 		final List<BlancoApexToken> syntaxTokenList = new BlancoApexSyntaxParser().parse(tokenList);
+
+		new BlancoApexSyntaxIndentFormatter().format(syntaxTokenList);
 
 		return syntaxTokenList;
 	}
