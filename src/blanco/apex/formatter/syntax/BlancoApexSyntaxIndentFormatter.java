@@ -32,6 +32,7 @@ import blanco.apex.syntaxparser.token.BlancoApexSyntaxMethodToken;
 import blanco.apex.syntaxparser.token.BlancoApexSyntaxParenthesisToken;
 import blanco.apex.syntaxparser.token.BlancoApexSyntaxPropertyToken;
 import blanco.apex.syntaxparser.token.BlancoApexSyntaxStatementToken;
+import blanco.apex.syntaxparser.token.BlancoApexSyntaxWhileStatementToken;
 
 /**
  * Format indent.
@@ -83,7 +84,8 @@ public class BlancoApexSyntaxIndentFormatter {
 						|| tokenList.get(index + 1) instanceof BlancoApexSyntaxPropertyToken
 						|| tokenList.get(index + 1) instanceof BlancoApexSyntaxStatementToken
 						|| tokenList.get(index + 1) instanceof BlancoApexSyntaxIfStatementToken
-						|| tokenList.get(index + 1) instanceof BlancoApexSyntaxForStatementToken) {
+						|| tokenList.get(index + 1) instanceof BlancoApexSyntaxForStatementToken
+						|| tokenList.get(index + 1) instanceof BlancoApexSyntaxWhileStatementToken) {
 					final BlancoApexWhitespaceToken newToken = new BlancoApexWhitespaceToken(
 							getIndentString(indentLevel), -1);
 					tokenList.add(index + 1, newToken);
