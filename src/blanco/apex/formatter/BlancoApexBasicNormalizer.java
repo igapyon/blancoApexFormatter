@@ -23,6 +23,7 @@ import java.io.InputStreamReader;
 import java.io.StringReader;
 import java.util.List;
 
+import blanco.apex.formatter.lexical.BlancoApexLexicalCommaFormatter;
 import blanco.apex.formatter.lexical.BlancoApexLexicalWhitespaceFormatter;
 import blanco.apex.parser.BlancoApexParser;
 import blanco.apex.parser.token.BlancoApexToken;
@@ -72,14 +73,14 @@ public class BlancoApexBasicNormalizer {
 		// 1st whitespace normalize.
 		new BlancoApexLexicalWhitespaceFormatter().format(tokenList);
 
+		new BlancoApexLexicalCommaFormatter().format(tokenList);
+
 		final List<BlancoApexToken> syntaxTokenList = new BlancoApexSyntaxParser().parse(tokenList);
 
 		// It seems bad. currently disabled.
 		// new BlancoApexWordCaseNormalizer().normalize(tokenList);
 
 		new BlancoApexBracketNormalizer().normalize(syntaxTokenList);
-
-		new BlancoApexCommaNormalizer().normalize(syntaxTokenList);
 
 		new BlancoApexIndentNormalizer().normalize(syntaxTokenList);
 

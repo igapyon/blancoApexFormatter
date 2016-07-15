@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package blanco.apex.formatter;
+package blanco.apex.formatter.lexical;
 
 import java.util.List;
 
@@ -26,13 +26,13 @@ import blanco.apex.parser.token.BlancoApexWhitespaceToken;
  * 
  * @author Toshiki Iga
  */
-public class BlancoApexCommaNormalizer {
+public class BlancoApexLexicalCommaFormatter {
 	/**
 	 * main normalize method.
 	 * 
 	 * @param tokenList
 	 */
-	public void normalize(final List<BlancoApexToken> tokenList) {
+	public void format(final List<BlancoApexToken> tokenList) {
 		// process relative normalize.
 
 		// ,a to , a
