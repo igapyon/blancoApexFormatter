@@ -82,7 +82,7 @@ public class BlancoApexBasicNormalizer {
 
 		new BlancoApexBracketNormalizer().normalize(syntaxTokenList);
 
-		new BlancoApexIndentNormalizer().normalize(syntaxTokenList);
+//		new BlancoApexIndentNormalizer().normalize(syntaxTokenList);
 
 		// 2nd whitespace normalize.
 		// retry to normalize whitespace.
