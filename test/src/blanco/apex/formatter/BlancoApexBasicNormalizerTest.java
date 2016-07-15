@@ -13,7 +13,7 @@ import blanco.apex.parser.token.BlancoApexToken;
  * @author Toshiki Iga
  */
 public class BlancoApexBasicNormalizerTest {
-	private static final String TARGET_FILE1 = "/home/admin1/MyClass.cls";
+	private static final String TARGET_FILE1 = "./test/data/apex/MySimpleTest.cls";
 
 	/**
 	 * Input apex class file and output formatted apex class file onto System
