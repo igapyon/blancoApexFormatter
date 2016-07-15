@@ -23,6 +23,7 @@ import java.io.InputStreamReader;
 import java.io.StringReader;
 import java.util.List;
 
+import blanco.apex.formatter.lexical.BlancoApexLexicalWhitespaceFormatter;
 import blanco.apex.parser.BlancoApexParser;
 import blanco.apex.parser.token.BlancoApexToken;
 import blanco.apex.syntaxparser.BlancoApexSyntaxParser;
@@ -69,7 +70,7 @@ public class BlancoApexBasicNormalizer {
 		// need syntac parse to do format.
 
 		// 1st whitespace normalize.
-		new BlancoApexWhitespaceNormalizer().normalize(tokenList);
+		new BlancoApexLexicalWhitespaceFormatter().format(tokenList);
 
 		final List<BlancoApexToken> syntaxTokenList = new BlancoApexSyntaxParser().parse(tokenList);
 
@@ -84,7 +85,7 @@ public class BlancoApexBasicNormalizer {
 
 		// 2nd whitespace normalize.
 		// retry to normalize whitespace.
-		new BlancoApexWhitespaceNormalizer().normalize(syntaxTokenList);
+		new BlancoApexLexicalWhitespaceFormatter().format(syntaxTokenList);
 
 		return syntaxTokenList;
 	}
