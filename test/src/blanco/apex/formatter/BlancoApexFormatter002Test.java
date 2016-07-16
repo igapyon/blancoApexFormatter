@@ -16,7 +16,8 @@ public class BlancoApexFormatter002Test {
 
 	@Test
 	public void test() throws IOException {
-		final List<BlancoApexToken> tokenList = new BlancoApexFormatter().format(new File(TARGET_FILE1)); //
+		final List<BlancoApexToken> tokenList = new BlancoApexFormatter(new BlancoApexFormatterSettings())
+				.format(new File(TARGET_FILE1)); //
 		System.out.println(BlancoApexParserUtil.tokenList2String(tokenList));
 	}
 }

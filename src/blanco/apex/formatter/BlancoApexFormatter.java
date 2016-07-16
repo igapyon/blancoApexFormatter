@@ -36,10 +36,16 @@ import blanco.apex.syntaxparser.BlancoApexSyntaxConstants;
 import blanco.apex.syntaxparser.BlancoApexSyntaxParser;
 
 public class BlancoApexFormatter {
+	protected BlancoApexFormatterSettings settings = null;
+
 	public static final void main(final String[] args) {
 		System.err.println("blancoApexFormatter: " + BlancoApexFormatterConstants.getVersion());
 		System.err.println("     lexical parser: " + BlancoApexConstants.getVersion());
 		System.err.println("      syntax parser: " + BlancoApexSyntaxConstants.getVersion());
+	}
+
+	public BlancoApexFormatter(final BlancoApexFormatterSettings settings) {
+		this.settings = settings;
 	}
 
 	public final List<BlancoApexToken> format(final File file) throws IOException {
@@ -74,9 +80,9 @@ public class BlancoApexFormatter {
 		// process whitespace
 		new BlancoApexLexicalWhitespaceFormatter().format(tokenList);
 
-		// for test purpose ONLY
-		if (false)
+		if (settings.getSmashWhitespace()) {
 			new BlancoApexLexicalWhitespaceSmasher().smash(tokenList);
+		}
 
 		new BlancoApexLexicalCommaFormatter().format(tokenList);
 
