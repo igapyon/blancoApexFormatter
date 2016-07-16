@@ -21,6 +21,7 @@ import blanco.apex.parser.token.BlancoApexNewlineToken;
 import blanco.apex.parser.token.BlancoApexSpecialCharToken;
 import blanco.apex.parser.token.BlancoApexToken;
 import blanco.apex.parser.token.BlancoApexWhitespaceToken;
+import blanco.apex.syntaxparser.BlancoApexSyntaxUtil;
 import blanco.apex.syntaxparser.token.AbstractBlancoApexSyntaxToken;
 import blanco.apex.syntaxparser.token.BlancoApexSyntaxBlockToken;
 import blanco.apex.syntaxparser.token.BlancoApexSyntaxBoxBracketsToken;
@@ -48,26 +49,28 @@ public class BlancoApexSyntaxIndentFormatter {
 	public void format(final List<BlancoApexToken> tokenList) {
 		// process relative normalize.
 
-		internalFormat(tokenList, 0);
+		internalFormat(tokenList, new BlancoApexSyntaxBlockToken(), 0);
 	}
 
-	protected void internalFormat(final List<BlancoApexToken> tokenList, int indentLevel) {
+	protected void internalFormat(final List<BlancoApexToken> tokenList, final AbstractBlancoApexSyntaxToken parent,
+			final int indentLevel) {
 		for (int index = 0; index < tokenList.size(); index++) {
 			if (tokenList.get(index) instanceof AbstractBlancoApexSyntaxToken) {
 				if (tokenList.get(index) instanceof BlancoApexSyntaxBlockToken
 						|| tokenList.get(index) instanceof BlancoApexSyntaxParenthesisToken) {
 					internalFormat(((AbstractBlancoApexSyntaxToken) tokenList.get(index)).getTokenList(),
-							indentLevel + 1);
+							((AbstractBlancoApexSyntaxToken) tokenList.get(index)), indentLevel + 1);
 				} else if (tokenList.get(index) instanceof BlancoApexSyntaxBoxBracketsToken) {
 					BlancoApexSyntaxBoxBracketsToken box = (BlancoApexSyntaxBoxBracketsToken) tokenList.get(index);
 					if (box.getIsSOQL()) {
 						// do nothing about SOQL
 					} else {
 						internalFormat(((AbstractBlancoApexSyntaxToken) tokenList.get(index)).getTokenList(),
-								indentLevel + 1);
+								((AbstractBlancoApexSyntaxToken) tokenList.get(index)), indentLevel + 1);
 					}
 				} else {
-					internalFormat(((AbstractBlancoApexSyntaxToken) tokenList.get(index)).getTokenList(), indentLevel);
+					internalFormat(((AbstractBlancoApexSyntaxToken) tokenList.get(index)).getTokenList(),
+							((AbstractBlancoApexSyntaxToken) tokenList.get(index)), indentLevel);
 				}
 				continue;
 			}
@@ -91,11 +94,20 @@ public class BlancoApexSyntaxIndentFormatter {
 					tokenList.add(index + 1, newToken);
 				} else if (tokenList.get(index + 1) instanceof BlancoApexSpecialCharToken) {
 					final BlancoApexSpecialCharToken special = (BlancoApexSpecialCharToken) tokenList.get(index + 1);
-					if (special.getValue().equals("}")) {
+
+					if (BlancoApexSyntaxUtil.isIncludedIgnoreCase(special.getValue(), new String[] { "}", ")" })) {
 						final BlancoApexWhitespaceToken newToken = new BlancoApexWhitespaceToken(
 								getIndentString(indentLevel - 1), -1);
 						tokenList.add(index + 1, newToken);
+					} else {
+						final BlancoApexWhitespaceToken newToken = new BlancoApexWhitespaceToken(
+								getIndentString(indentLevel), -1);
+						tokenList.add(index + 1, newToken);
 					}
+				} else {
+					final BlancoApexWhitespaceToken newToken = new BlancoApexWhitespaceToken(
+							getIndentString(indentLevel), -1);
+					tokenList.add(index + 1, newToken);
 				}
 			}
 		}
