@@ -102,7 +102,7 @@ public class BlancoApexSyntaxIndentFormatter {
 									getIndentString(indentLevel), -1);
 							tokenList.add(index + 1, newToken);
 						}
-					} else {
+					} else if (false == tokenList.get(index + 1) instanceof BlancoApexWhitespaceToken) {
 						final BlancoApexWhitespaceToken newToken = new BlancoApexWhitespaceToken(
 								getIndentString(indentLevel), -1);
 						tokenList.add(index + 1, newToken);
@@ -110,12 +110,13 @@ public class BlancoApexSyntaxIndentFormatter {
 				}
 			}
 
-			// foe existing whitespace token
+			// for existing whitespace token
 			if (index < tokenList.size() - 2) {
 				// needs +2 size
 				if (tokenList.get(index) instanceof BlancoApexNewlineToken
 						&& tokenList.get(index + 1) instanceof BlancoApexWhitespaceToken) {
-					final BlancoApexWhitespaceToken newToken = (BlancoApexWhitespaceToken) tokenList.get(index + 1);
+					final BlancoApexWhitespaceToken updateWhitespaceToken = (BlancoApexWhitespaceToken) tokenList
+							.get(index + 1);
 
 					if (tokenList.get(index + 2) instanceof BlancoApexSyntaxClassToken
 							|| tokenList.get(index + 2) instanceof BlancoApexSyntaxMethodToken
@@ -125,23 +126,18 @@ public class BlancoApexSyntaxIndentFormatter {
 							|| tokenList.get(index + 2) instanceof BlancoApexSyntaxIfStatementToken
 							|| tokenList.get(index + 2) instanceof BlancoApexSyntaxForStatementToken
 							|| tokenList.get(index + 2) instanceof BlancoApexSyntaxWhileStatementToken) {
-						newToken.setValue(getIndentString(indentLevel));
-						// tokenList.add(index + 1, newToken);
+						updateWhitespaceToken.setValue(getIndentString(indentLevel));
 					} else if (tokenList.get(index + 2) instanceof BlancoApexSpecialCharToken) {
 						final BlancoApexSpecialCharToken special = (BlancoApexSpecialCharToken) tokenList
 								.get(index + 2);
 
 						if (BlancoApexSyntaxUtil.isIncludedIgnoreCase(special.getValue(), new String[] { "}", ")" })) {
-							newToken.setValue(getIndentString(indentLevel - 1));
-							// tokenList.add(index + 1, newToken);
+							updateWhitespaceToken.setValue(getIndentString(indentLevel - 1));
 						} else {
-							newToken.setValue(getIndentString(indentLevel));
-							// tokenList.add(index + 1, newToken);
+							updateWhitespaceToken.setValue(getIndentString(indentLevel));
 						}
 					} else {
-						// FIXME I'm not sure what happen.
-						newToken.setValue(getIndentString(0/* indentLevel */));
-						// tokenList.add(index + 1, newToken);
+						updateWhitespaceToken.setValue(getIndentString(indentLevel));
 					}
 				}
 			}
