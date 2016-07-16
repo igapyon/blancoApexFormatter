@@ -47,7 +47,9 @@ public class BlancoApexSyntaxBracketFormatter {
 			if (tokenList.get(index) instanceof AbstractBlancoApexSyntaxToken) {
 				internalFormat(((AbstractBlancoApexSyntaxToken) tokenList.get(index)).getTokenList(),
 						((AbstractBlancoApexSyntaxToken) tokenList.get(index)));
-			} else if (tokenList.get(index) instanceof BlancoApexWordToken) {
+			}
+
+			if (tokenList.get(index) instanceof BlancoApexWordToken) {
 				final BlancoApexWordToken wordChar = (BlancoApexWordToken) tokenList.get(index);
 				if (BlancoApexSyntaxUtil.isIncludedIgnoreCase(wordChar.getValue(),
 						new String[] { "if", "for", "while" })) {
@@ -56,6 +58,13 @@ public class BlancoApexSyntaxBracketFormatter {
 						if (rightToken instanceof BlancoApexSyntaxParenthesisToken) {
 							tokenList.add(index + 1, new BlancoApexWhitespaceToken(" ", -1));
 						}
+					}
+				}
+			} else if (tokenList.get(index) instanceof BlancoApexSyntaxParenthesisToken) {
+				if (index < tokenList.size() - 1) {
+					final BlancoApexToken rightToken = tokenList.get(index + 1);
+					if (rightToken instanceof BlancoApexSyntaxBlockToken) {
+						tokenList.add(index + 1, new BlancoApexWhitespaceToken(" ", -1));
 					}
 				}
 			}
