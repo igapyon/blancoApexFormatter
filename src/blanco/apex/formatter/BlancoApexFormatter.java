@@ -75,7 +75,8 @@ public class BlancoApexFormatter {
 		new BlancoApexLexicalWhitespaceFormatter().format(tokenList);
 
 		// for test purpose ONLY
-		new BlancoApexLexicalWhitespaceSmasher().smash(tokenList);
+		if (false)
+			new BlancoApexLexicalWhitespaceSmasher().smash(tokenList);
 
 		new BlancoApexLexicalCommaFormatter().format(tokenList);
 

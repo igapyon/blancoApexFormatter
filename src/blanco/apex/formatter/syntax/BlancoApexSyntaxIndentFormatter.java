@@ -75,39 +75,74 @@ public class BlancoApexSyntaxIndentFormatter {
 				continue;
 			}
 
-			if (index >= tokenList.size() - 1) {
+			if (index < tokenList.size() - 1) {
 				// needs +1 size
-				continue;
-			}
-
-			if (tokenList.get(index) instanceof BlancoApexNewlineToken) {
-				if (tokenList.get(index + 1) instanceof BlancoApexSyntaxClassToken
-						|| tokenList.get(index + 1) instanceof BlancoApexSyntaxMethodToken
-						|| tokenList.get(index + 1) instanceof BlancoApexSyntaxFieldToken
-						|| tokenList.get(index + 1) instanceof BlancoApexSyntaxPropertyToken
-						|| tokenList.get(index + 1) instanceof BlancoApexSyntaxStatementToken
-						|| tokenList.get(index + 1) instanceof BlancoApexSyntaxIfStatementToken
-						|| tokenList.get(index + 1) instanceof BlancoApexSyntaxForStatementToken
-						|| tokenList.get(index + 1) instanceof BlancoApexSyntaxWhileStatementToken) {
-					final BlancoApexWhitespaceToken newToken = new BlancoApexWhitespaceToken(
-							getIndentString(indentLevel), -1);
-					tokenList.add(index + 1, newToken);
-				} else if (tokenList.get(index + 1) instanceof BlancoApexSpecialCharToken) {
-					final BlancoApexSpecialCharToken special = (BlancoApexSpecialCharToken) tokenList.get(index + 1);
-
-					if (BlancoApexSyntaxUtil.isIncludedIgnoreCase(special.getValue(), new String[] { "}", ")" })) {
+				if (tokenList.get(index) instanceof BlancoApexNewlineToken) {
+					if (tokenList.get(index + 1) instanceof BlancoApexSyntaxClassToken
+							|| tokenList.get(index + 1) instanceof BlancoApexSyntaxMethodToken
+							|| tokenList.get(index + 1) instanceof BlancoApexSyntaxFieldToken
+							|| tokenList.get(index + 1) instanceof BlancoApexSyntaxPropertyToken
+							|| tokenList.get(index + 1) instanceof BlancoApexSyntaxStatementToken
+							|| tokenList.get(index + 1) instanceof BlancoApexSyntaxIfStatementToken
+							|| tokenList.get(index + 1) instanceof BlancoApexSyntaxForStatementToken
+							|| tokenList.get(index + 1) instanceof BlancoApexSyntaxWhileStatementToken) {
 						final BlancoApexWhitespaceToken newToken = new BlancoApexWhitespaceToken(
-								getIndentString(indentLevel - 1), -1);
+								getIndentString(indentLevel), -1);
 						tokenList.add(index + 1, newToken);
+					} else if (tokenList.get(index + 1) instanceof BlancoApexSpecialCharToken) {
+						final BlancoApexSpecialCharToken special = (BlancoApexSpecialCharToken) tokenList
+								.get(index + 1);
+
+						if (BlancoApexSyntaxUtil.isIncludedIgnoreCase(special.getValue(), new String[] { "}", ")" })) {
+							final BlancoApexWhitespaceToken newToken = new BlancoApexWhitespaceToken(
+									getIndentString(indentLevel - 1), -1);
+							tokenList.add(index + 1, newToken);
+						} else {
+							final BlancoApexWhitespaceToken newToken = new BlancoApexWhitespaceToken(
+									getIndentString(indentLevel), -1);
+							tokenList.add(index + 1, newToken);
+						}
 					} else {
 						final BlancoApexWhitespaceToken newToken = new BlancoApexWhitespaceToken(
 								getIndentString(indentLevel), -1);
 						tokenList.add(index + 1, newToken);
 					}
-				} else {
-					final BlancoApexWhitespaceToken newToken = new BlancoApexWhitespaceToken(
-							getIndentString(indentLevel), -1);
-					tokenList.add(index + 1, newToken);
+				}
+			}
+
+			// foe existing whitespace token
+			if (index < tokenList.size() - 2) {
+				// needs +2 size
+				if (tokenList.get(index) instanceof BlancoApexNewlineToken
+						&& tokenList.get(index + 1) instanceof BlancoApexWhitespaceToken) {
+					final BlancoApexWhitespaceToken newToken = (BlancoApexWhitespaceToken) tokenList.get(index + 1);
+
+					if (tokenList.get(index + 2) instanceof BlancoApexSyntaxClassToken
+							|| tokenList.get(index + 2) instanceof BlancoApexSyntaxMethodToken
+							|| tokenList.get(index + 2) instanceof BlancoApexSyntaxFieldToken
+							|| tokenList.get(index + 2) instanceof BlancoApexSyntaxPropertyToken
+							|| tokenList.get(index + 2) instanceof BlancoApexSyntaxStatementToken
+							|| tokenList.get(index + 2) instanceof BlancoApexSyntaxIfStatementToken
+							|| tokenList.get(index + 2) instanceof BlancoApexSyntaxForStatementToken
+							|| tokenList.get(index + 2) instanceof BlancoApexSyntaxWhileStatementToken) {
+						newToken.setValue(getIndentString(indentLevel));
+						// tokenList.add(index + 1, newToken);
+					} else if (tokenList.get(index + 2) instanceof BlancoApexSpecialCharToken) {
+						final BlancoApexSpecialCharToken special = (BlancoApexSpecialCharToken) tokenList
+								.get(index + 2);
+
+						if (BlancoApexSyntaxUtil.isIncludedIgnoreCase(special.getValue(), new String[] { "}", ")" })) {
+							newToken.setValue(getIndentString(indentLevel - 1));
+							// tokenList.add(index + 1, newToken);
+						} else {
+							newToken.setValue(getIndentString(indentLevel));
+							// tokenList.add(index + 1, newToken);
+						}
+					} else {
+						// FIXME I'm not sure what happen.
+						newToken.setValue(getIndentString(0/* indentLevel */));
+						// tokenList.add(index + 1, newToken);
+					}
 				}
 			}
 		}
