@@ -52,7 +52,8 @@ public class BlancoApexSyntaxSpecialCharFormatter {
 			} else if (tokenList.get(index) instanceof BlancoApexSpecialCharToken) {
 				final BlancoApexSpecialCharToken specialChar = (BlancoApexSpecialCharToken) tokenList.get(index);
 				if (BlancoApexSyntaxUtil.isIncludedIgnoreCase(specialChar.getValue(),
-						new String[] { "=", "==", "<=", ">=", "!=", "||", "&&" })) {
+						new String[] { "=", "==", "<=", ">=", "!=", "||", "&&", "+", "-", "*", "/",
+								"?"/* , ":" care about label */ })) {
 					if (index < tokenList.size() - 1) {
 						final BlancoApexToken rightToken = tokenList.get(index + 1);
 						if (rightToken instanceof BlancoApexWordToken //
