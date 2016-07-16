@@ -16,10 +16,67 @@
 package blanco.apex.formatter;
 
 public class BlancoApexFormatterSettings {
+	/////////////////////
+	// lexical
+
 	/**
-	 * Smash all whitespace, without comments.
+	 * Smash all whitespace, without comments. It does too much, so it is set as
+	 * false default.
 	 */
-	private boolean isSmashWhitespace = false;
+	protected boolean isSmashWhitespace = false;
+
+	protected boolean isFormatComma = true;
+
+	protected boolean isFormatSemicolon = true;
+
+	/////////////////////
+	// syntax
+
+	protected boolean isFormatIndent = true;
+
+	protected boolean isFormatSpecialChar = true;
+
+	protected boolean isFormatBracket = true;
+
+	public boolean getFormatComma() {
+		return isFormatComma;
+	}
+
+	public void setFormatComma(boolean isFormatComma) {
+		this.isFormatComma = isFormatComma;
+	}
+
+	public boolean getFormatSemicolon() {
+		return isFormatSemicolon;
+	}
+
+	public void setFormatSemicolon(boolean isFormatSemicolon) {
+		this.isFormatSemicolon = isFormatSemicolon;
+	}
+
+	public boolean getFormatIndent() {
+		return isFormatIndent;
+	}
+
+	public void setFormatIndent(boolean isFormatIndent) {
+		this.isFormatIndent = isFormatIndent;
+	}
+
+	public boolean getFormatSpecialChar() {
+		return isFormatSpecialChar;
+	}
+
+	public void setFormatSpecialChar(boolean isFormatSpecialChar) {
+		this.isFormatSpecialChar = isFormatSpecialChar;
+	}
+
+	public boolean getFormatBracket() {
+		return isFormatBracket;
+	}
+
+	public void setFormatBracket(boolean isFormatBracket) {
+		this.isFormatBracket = isFormatBracket;
+	}
 
 	public boolean getSmashWhitespace() {
 		return isSmashWhitespace;

@@ -86,9 +86,13 @@ public class BlancoApexFormatter {
 			new BlancoApexLexicalWhitespaceSmasher().smash(tokenList);
 		}
 
-		new BlancoApexLexicalCommaFormatter().format(tokenList);
+		if (settings.getFormatComma()) {
+			new BlancoApexLexicalCommaFormatter().format(tokenList);
+		}
 
-		new BlancoApexLexicalSemicolonFormatter().format(tokenList);
+		if (settings.getFormatSemicolon()) {
+			new BlancoApexLexicalSemicolonFormatter().format(tokenList);
+		}
 
 		/////////////////////////////////////
 		// syntax format
@@ -96,9 +100,17 @@ public class BlancoApexFormatter {
 		// convert lexical list to syntax list.
 		final List<BlancoApexToken> syntaxTokenList = new BlancoApexSyntaxParser().parse(tokenList);
 
-		new BlancoApexSyntaxIndentFormatter().format(syntaxTokenList);
-		new BlancoApexSyntaxSpecialCharFormatter().format(syntaxTokenList);
-		new BlancoApexSyntaxBracketFormatter().format(syntaxTokenList);
+		if (settings.getFormatIndent()) {
+			new BlancoApexSyntaxIndentFormatter().format(syntaxTokenList);
+		}
+
+		if (settings.getFormatSpecialChar()) {
+			new BlancoApexSyntaxSpecialCharFormatter().format(syntaxTokenList);
+		}
+
+		if (settings.getFormatBracket()) {
+			new BlancoApexSyntaxBracketFormatter().format(syntaxTokenList);
+		}
 
 		// process whitespace in syntax formatter.
 		new BlancoApexSyntaxWhitespaceFormatter().format(syntaxTokenList);
