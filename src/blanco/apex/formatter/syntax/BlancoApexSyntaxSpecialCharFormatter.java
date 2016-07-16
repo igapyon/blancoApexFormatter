@@ -25,6 +25,7 @@ import blanco.apex.parser.token.BlancoApexWordToken;
 import blanco.apex.syntaxparser.BlancoApexSyntaxUtil;
 import blanco.apex.syntaxparser.token.AbstractBlancoApexSyntaxToken;
 import blanco.apex.syntaxparser.token.BlancoApexSyntaxBlockToken;
+import blanco.apex.syntaxparser.token.BlancoApexSyntaxBoxBracketsToken;
 import blanco.apex.syntaxparser.token.BlancoApexSyntaxParenthesisToken;
 
 /**
@@ -66,7 +67,8 @@ public class BlancoApexSyntaxSpecialCharFormatter {
 						final BlancoApexToken leftToken = tokenList.get(index - 1);
 						if (leftToken instanceof BlancoApexWordToken //
 								|| leftToken instanceof BlancoApexLiteralToken //
-								|| leftToken instanceof BlancoApexSyntaxParenthesisToken) {
+								|| leftToken instanceof BlancoApexSyntaxParenthesisToken
+								|| leftToken instanceof BlancoApexSyntaxBoxBracketsToken) {
 							tokenList.add(index, new BlancoApexWhitespaceToken(" ", -1));
 						}
 					}
