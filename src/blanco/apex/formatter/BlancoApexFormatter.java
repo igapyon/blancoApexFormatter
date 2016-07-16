@@ -32,6 +32,7 @@ import blanco.apex.formatter.syntax.BlancoApexSyntaxIndentFormatter;
 import blanco.apex.formatter.syntax.BlancoApexSyntaxSpecialCharFormatter;
 import blanco.apex.formatter.syntax.BlancoApexSyntaxWhitespaceFormatter;
 import blanco.apex.parser.BlancoApexParser;
+import blanco.apex.parser.BlancoApexParserUtil;
 import blanco.apex.parser.token.BlancoApexToken;
 import blanco.apex.syntaxparser.BlancoApexSyntaxParser;
 
@@ -47,17 +48,17 @@ public class BlancoApexFormatter {
 		this.settings = settings;
 	}
 
-	public final List<BlancoApexToken> format(final File file) throws IOException {
-		final BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(file), "UTF-8"));
+	public final String format(final String sourceString) throws IOException {
+		final BufferedReader reader = new BufferedReader(new StringReader(sourceString));
 		try {
-			return format(reader);
+			return BlancoApexParserUtil.tokenList2String(format(reader));
 		} finally {
 			reader.close();
 		}
 	}
 
-	public final List<BlancoApexToken> format(final String sourceString) throws IOException {
-		final BufferedReader reader = new BufferedReader(new StringReader(sourceString));
+	public final List<BlancoApexToken> format(final File file) throws IOException {
+		final BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(file), "UTF-8"));
 		try {
 			return format(reader);
 		} finally {
