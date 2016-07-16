@@ -60,11 +60,30 @@ public class BlancoApexSyntaxBracketFormatter {
 						}
 					}
 				}
+				if (BlancoApexSyntaxUtil.isIncludedIgnoreCase(wordChar.getValue(), new String[] { "try" })) {
+					if (index < tokenList.size() - 1) {
+						final BlancoApexToken rightToken = tokenList.get(index + 1);
+						if (rightToken instanceof BlancoApexSyntaxBlockToken) {
+							tokenList.add(index + 1, new BlancoApexWhitespaceToken(" ", -1));
+						}
+					}
+				}
 			} else if (tokenList.get(index) instanceof BlancoApexSyntaxParenthesisToken) {
 				if (index < tokenList.size() - 1) {
 					final BlancoApexToken rightToken = tokenList.get(index + 1);
 					if (rightToken instanceof BlancoApexSyntaxBlockToken) {
 						tokenList.add(index + 1, new BlancoApexWhitespaceToken(" ", -1));
+					}
+				}
+			} else if (tokenList.get(index) instanceof BlancoApexSyntaxBlockToken) {
+				if (index < tokenList.size() - 1) {
+					final BlancoApexToken rightToken = tokenList.get(index + 1);
+					if (rightToken instanceof BlancoApexWordToken) {
+						final BlancoApexWordToken wordChar = (BlancoApexWordToken) tokenList.get(index + 1);
+						if (BlancoApexSyntaxUtil.isIncludedIgnoreCase(wordChar.getValue(),
+								new String[] { "catch", "finally", "else" })) {
+							tokenList.add(index + 1, new BlancoApexWhitespaceToken(" ", -1));
+						}
 					}
 				}
 			}
