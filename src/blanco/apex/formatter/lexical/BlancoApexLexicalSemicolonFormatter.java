@@ -23,24 +23,22 @@ import blanco.apex.parser.token.BlancoApexToken;
 import blanco.apex.parser.token.BlancoApexWhitespaceToken;
 
 /**
- * Format comma.
+ * Format semicolon.
  * 
  * @author Toshiki Iga
  */
-public class BlancoApexLexicalCommaFormatter {
+public class BlancoApexLexicalSemicolonFormatter {
 	/**
-	 * main normalize method.
+	 * main format method.
 	 * 
 	 * @param tokenList
 	 */
 	public void format(final List<BlancoApexToken> tokenList) {
-		// process relative normalize.
-
-		// ,a to , a
+		// ;a to ; a
 		for (int index = 0; index < tokenList.size() - 1; index++) {
 			final BlancoApexToken centerToken = tokenList.get(index);
 			final BlancoApexToken rightToken = tokenList.get(index + 1);
-			if (centerToken instanceof BlancoApexSpecialCharToken && centerToken.getValue().equalsIgnoreCase(",")) {
+			if (centerToken instanceof BlancoApexSpecialCharToken && centerToken.getValue().equalsIgnoreCase(";")) {
 				if (false == rightToken instanceof BlancoApexWhitespaceToken
 						&& false == rightToken instanceof BlancoApexNewlineToken) {
 					// adding whitespace
