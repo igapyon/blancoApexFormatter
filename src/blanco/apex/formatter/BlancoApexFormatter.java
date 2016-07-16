@@ -26,6 +26,7 @@ import java.util.List;
 import blanco.apex.formatter.lexical.BlancoApexLexicalCommaFormatter;
 import blanco.apex.formatter.lexical.BlancoApexLexicalWhitespaceFormatter;
 import blanco.apex.formatter.lexical.BlancoApexLexicalWhitespaceSmasher;
+import blanco.apex.formatter.syntax.BlancoApexSyntaxBracketFormatter;
 import blanco.apex.formatter.syntax.BlancoApexSyntaxIndentFormatter;
 import blanco.apex.formatter.syntax.BlancoApexSyntaxSpecialCharFormatter;
 import blanco.apex.parser.BlancoApexConstants;
@@ -83,6 +84,7 @@ public class BlancoApexFormatter {
 
 		new BlancoApexSyntaxIndentFormatter().format(syntaxTokenList);
 		new BlancoApexSyntaxSpecialCharFormatter().format(syntaxTokenList);
+		new BlancoApexSyntaxBracketFormatter().format(syntaxTokenList);
 
 		return syntaxTokenList;
 	}
