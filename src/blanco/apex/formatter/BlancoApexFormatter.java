@@ -31,20 +31,17 @@ import blanco.apex.formatter.syntax.BlancoApexSyntaxBracketFormatter;
 import blanco.apex.formatter.syntax.BlancoApexSyntaxIndentFormatter;
 import blanco.apex.formatter.syntax.BlancoApexSyntaxSpecialCharFormatter;
 import blanco.apex.formatter.syntax.BlancoApexSyntaxWhitespaceFormatter;
-import blanco.apex.parser.BlancoApexConstants;
 import blanco.apex.parser.BlancoApexParser;
 import blanco.apex.parser.token.BlancoApexToken;
-import blanco.apex.syntaxparser.BlancoApexSyntaxConstants;
 import blanco.apex.syntaxparser.BlancoApexSyntaxParser;
 
+/**
+ * Apex source file formatter.
+ * 
+ * @author Toshiki Iga
+ */
 public class BlancoApexFormatter {
 	protected BlancoApexFormatterSettings settings = null;
-
-	public static final void main(final String[] args) {
-		System.err.println("blancoApexFormatter: " + BlancoApexFormatterConstants.getVersion());
-		System.err.println("     lexical parser: " + BlancoApexConstants.getVersion());
-		System.err.println("      syntax parser: " + BlancoApexSyntaxConstants.getVersion());
-	}
 
 	public BlancoApexFormatter(final BlancoApexFormatterSettings settings) {
 		this.settings = settings;
