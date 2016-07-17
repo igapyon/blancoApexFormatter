@@ -43,7 +43,7 @@ Prepare Ant taskdef on your build.xml like below:
 ```xml
 	<taskdef name="apexformatter" classname="blanco.apex.formatter.ant.BlancoApexFormatterTask">
 		<classpath>
-			<pathelement location="./blancoApexFormatterCli.jar" />
+			<pathelement location="./lib/blancoApexFormatterCli.jar" />
 			<pathelement location="./lib/blancoApexFormatter.jar" />
 			<pathelement location="./lib/blancoApexSyntaxParser.jar" />
 			<pathelement location="./lib/blancoApexParser.jar" />
@@ -58,10 +58,11 @@ Run Ant task of blancoApexFormatter like below:
 ```xml
 	<target name="doFormat">
 		<apexformatter input="./test/data/apex/"
-		               output="./test/data/apex.output"
-		               verbose="true" xsmashwhitespace="false" />
+		               output="./test/data/apex.output"/>
 	</target>
 ```
+
+'input' and 'output' attributes are required.
 
 ### Command line
 
@@ -88,7 +89,6 @@ You can download latest version of blancoApexFormatter from URL below:
   https://github.com/igapyon/blancoApexFormatterCli/releases
 
 'Source code (zip)' contains binary jar files of blancoApexFormatter.
-
 
 ## LICENSE
 
