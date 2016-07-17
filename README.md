@@ -4,6 +4,10 @@ blancoApexFormatter is a Apax language source code formatter. blancoApexFormatte
 
 ## spec
 
+blancoApexFormatter format Apax code like below:
+
+### before
+
 ```java
 @isTest
 public without sharing class MySimpleTest {
@@ -14,6 +18,8 @@ public without sharing class MySimpleTest {
 }
 ```
 
+### after
+
 ```java
 @isTest
 public without sharing class MySimpleTest {
@@ -23,7 +29,6 @@ public without sharing class MySimpleTest {
     }
 }
 ```
-
 
 ## usage
 
