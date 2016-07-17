@@ -8,7 +8,8 @@ blancoApexFormatter is a Apax language source code formatter. blancoApexFormatte
 @isTest
 public without sharing class MySimpleTest {
          static testMethod void testMain001(){
-              System.assert(false, 'First hello word written in Apex, as a error of test code.');
+              System.assert(false,
+              'First hello word written in Apex, as a error of test code.');
 }
 }
 ```
@@ -17,7 +18,8 @@ public without sharing class MySimpleTest {
 @isTest
 public without sharing class MySimpleTest {
     static testMethod void testMain001() {
-        System.assert(false, 'First hello word written in Apex, as a error of test code.');
+        System.assert(false,
+            'First hello word written in Apex, as a error of test code.');
     }
 }
 ```
