@@ -85,6 +85,9 @@ You can download latest version of blancoApexFormatter from URL below:
 
   https://github.com/igapyon/blancoApexFormatterCli/releases
 
+'Source code (zip)' contains binary jar files of blancoApexFormatter.
+
+
 ## LICENSE
 
 ```
