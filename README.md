@@ -79,6 +79,12 @@ usage: BlancoApexFormatterCli
  -xspecialchar <true>        format special char.
 ```
 
+## download
+
+You can download latest version of blancoApexFormatter from URL below:
+
+  https://github.com/igapyon/blancoApexFormatterCli/releases
+
 ## LICENSE
 
 ```
