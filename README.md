@@ -1,29 +1,54 @@
-# README #
+# blancoApexFormatter
+code formatter for Apex language written in Java.
 
-This README would normally document whatever steps are necessary to get your application up and running.
+## usage
 
-### What is this repository for? ###
+easy way to use formatter is using blancoApexFormatterCli. See below:
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+### Ant task
+Write ant taskdef like below.
 
-### How do I get set up? ###
+```xml
+	<taskdef name="apexformatter" classname="blanco.apex.formatter.ant.BlancoApexFormatterTask">
+		<classpath>
+			<pathelement location="./blancoApexFormatterCli.jar" />
+			<pathelement location="./lib/blancoApexFormatter.jar" />
+			<pathelement location="./lib/blancoApexSyntaxParser.jar" />
+			<pathelement location="./lib/blancoApexParser.jar" />
+			<pathelement location="./lib/apache/commons-cli-1.3.1.jar" />
+			<pathelement location="./lib/apache/commons-io-2.5.jar" />
+		</classpath>
+	</taskdef>
+```
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+Run ant task like below.
 
-### Contribution guidelines ###
+```xml
+	<target name="doFormat">
+		<apexformatter input="./test/data/apex/" output="./test/data/apex.output" verbose="true" xsmashwhitespace="false" />
+	</target>
+```
 
-* Writing tests
-* Code review
-* Other guidelines
+### Command line
 
-### Who do I talk to? ###
+To be continued.
 
-* Repo owner or admin
-* Other community or team contact
+## LICENSE
+
+```
+/*
+ * Copyright 2016 Toshiki Iga
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+```
