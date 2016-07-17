@@ -92,9 +92,17 @@ usage: BlancoApexFormatterCli
 
 You can download latest version of blancoApexFormatter from URL below:
 
-  https://github.com/igapyon/blancoApexFormatterCli/releases
+### binary distribution
 
-'Source code (zip)' contains binary jar files of blancoApexFormatter.
+* https://github.com/igapyon/blancoApexFormatterCli/releases
+  * 'Source code (zip)' contains binary jar files of blancoApexFormatter.
+
+### source distribution
+
+* https://github.com/igapyon/blancoApexFormatter/releases 
+* https://github.com/igapyon/blancoApexSyntaxParser/releases
+* https://github.com/igapyon/blancoApexParser/releases
+
 
 ## LICENSE
 
