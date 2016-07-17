@@ -69,7 +69,7 @@ Run Ant task of blancoApexFormatter like below:
 #### how to run in command line
 
 ```
--cp blancoApexFormatterCli.jar:lib/blancoApexFormatter.jar:lib/blancoApexSyntaxParser.jar:lib/blancoApexParser.jar:lib/apache/commons-cli-1.3.1.jar:lib/apache/commons-io-2.5.jar blanco.apex.formatter.cli.BlancoApexFormatterCli -i /home/tosiki/workspace/apex-lang/src.apex -o /home/tosiki/workspace/apex-lang/src.apex.output
+java -cp blancoApexFormatterCli.jar:lib/blancoApexFormatter.jar:lib/blancoApexSyntaxParser.jar:lib/blancoApexParser.jar:lib/apache/commons-cli-1.3.1.jar:lib/apache/commons-io-2.5.jar blanco.apex.formatter.cli.BlancoApexFormatterCli -i /home/tosiki/workspace/apex-lang/src.apex -o /home/tosiki/workspace/apex-lang/src.apex.output
 ```
 
 Command line interface of blancoApexFormatter provides several option like below:
