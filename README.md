@@ -1,5 +1,27 @@
 # blancoApexFormatter
-code formatter for Apex language written in Java.
+
+blancoApexFormatter is a Apax language source code formatter. blancoApexFormatter is written in Java.
+
+## spec
+
+```java
+@isTest
+public without sharing class MySimpleTest {
+         static testMethod void testMain001(){
+              System.assert(false, 'First hello word written in Apex, as a error of test code.');
+}
+}
+```
+
+```java
+@isTest
+public without sharing class MySimpleTest {
+    static testMethod void testMain001() {
+        System.assert(false, 'First hello word written in Apex, as a error of test code.');
+    }
+}
+```
+
 
 ## usage
 
