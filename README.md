@@ -1,12 +1,13 @@
 # blancoApexFormatter
 
-blancoApexFormatter is a Apax language source code formatter. blancoApexFormatter is written in Java.
+blancoApexFormatter is a Apax language source code formatter.
+blancoApexFormatter is written in Java. blancoApexFormatter is provided as an OSS product.
 
 ## spec
 
 blancoApexFormatter format Apax code like below:
 
-### before
+### before (input)
 
 ```java
 @isTest
@@ -18,7 +19,7 @@ public without sharing class MySimpleTest {
 }
 ```
 
-### after
+### after (formatted output)
 
 ```java
 @isTest
@@ -32,10 +33,12 @@ public without sharing class MySimpleTest {
 
 ## usage
 
-easy way to use formatter is using blancoApexFormatterCli. See below:
+There is several way to use blancoApexFormatter.
+My currently recommendation is to use blancoApexFormatterCli. blancoApexFormatterCli provides Ant Task and command line interface. See below:
 
 ### Ant task
-Write ant taskdef like below.
+
+Prepare Ant taskdef on your build.xml like below:
 
 ```xml
 	<taskdef name="apexformatter" classname="blanco.apex.formatter.ant.BlancoApexFormatterTask">
@@ -50,7 +53,7 @@ Write ant taskdef like below.
 	</taskdef>
 ```
 
-Run ant task like below.
+Run Ant task of blancoApexFormatter like below:
 
 ```xml
 	<target name="doFormat">
@@ -60,7 +63,21 @@ Run ant task like below.
 
 ### Command line
 
-To be continued.
+Command line interface of blancoApexFormatter provides several option like below:
+
+```
+usage: BlancoApexFormatterCli
+ -h,--help                   show usage.
+ -i,--input <inputdir>       input directory.
+ -o,--output <outputdir>     output directory.
+ -v,--verbose                run verbose mode.
+ -xbracket <true>            format bracket.
+ -xcomma <true>              format comma.
+ -xindent <true>             format indent.
+ -xsemicolon <true>          format semicolon.
+ -xsmashwhitespace <false>   format with whitespace smash (hard format).
+ -xspecialchar <true>        format special char.
+```
 
 ## LICENSE
 
