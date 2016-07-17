@@ -17,6 +17,7 @@ package blanco.apex.formatter.syntax;
 
 import java.util.List;
 
+import blanco.apex.parser.token.BlancoApexNewlineToken;
 import blanco.apex.parser.token.BlancoApexToken;
 import blanco.apex.parser.token.BlancoApexWhitespaceToken;
 import blanco.apex.parser.token.BlancoApexWordToken;
@@ -43,6 +44,25 @@ public class BlancoApexSyntaxBracketFormatter {
 	}
 
 	protected void internalFormat(final List<BlancoApexToken> tokenList, final AbstractBlancoApexSyntaxToken parent) {
+		// remove
+		// K&R
+		for (int index = 0; index < tokenList.size(); index++) {
+			if (index < tokenList.size() - 2) {
+				if (tokenList.get(index + 1) instanceof BlancoApexNewlineToken
+						&& tokenList.get(index + 2) instanceof BlancoApexSyntaxBlockToken) {
+					tokenList.remove(index + 1);
+				}
+			}
+			if (index < tokenList.size() - 3) {
+				if (tokenList.get(index + 1) instanceof BlancoApexNewlineToken
+						&& tokenList.get(index + 2) instanceof BlancoApexWhitespaceToken
+						&& tokenList.get(index + 3) instanceof BlancoApexSyntaxBlockToken) {
+					tokenList.get(index + 2).setValue(" ");
+					tokenList.remove(index + 1);
+				}
+			}
+		}
+
 		for (int index = 0; index < tokenList.size(); index++) {
 			if (tokenList.get(index) instanceof AbstractBlancoApexSyntaxToken) {
 				internalFormat(((AbstractBlancoApexSyntaxToken) tokenList.get(index)).getTokenList(),
