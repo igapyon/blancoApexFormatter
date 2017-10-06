@@ -16,9 +16,9 @@
 package blanco.apex.formatter;
 
 public class BlancoApexFormatterConstants {
-	public static final String VERSION = "v0.7.3-20160717a";
+    public static final String VERSION = "v0.7.3-20160717a";
 
-	public static String getVersion() {
-		return VERSION;
-	}
+    public static String getVersion() {
+        return VERSION;
+    }
 }

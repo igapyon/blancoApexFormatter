@@ -30,70 +30,70 @@ import blanco.apex.parser.token.BlancoApexWordToken;
  * @author Toshiki Iga
  */
 public class BlancoApexLexicalWhitespaceSmasher {
-	/**
-	 * entry point.
-	 * 
-	 * @param tokenList
-	 */
-	public void smash(final List<BlancoApexToken> tokenList) {
+    /**
+     * entry point.
+     * 
+     * @param tokenList
+     */
+    public void smash(final List<BlancoApexToken> tokenList) {
 
-		for (boolean isProcessed = false;; isProcessed = false) {
-			// smash head of line whitespace
-			for (int index = 0; index < tokenList.size() - 1; index++) {
-				if (tokenList.get(index) instanceof BlancoApexNewlineToken
-						&& tokenList.get(index + 1) instanceof BlancoApexWhitespaceToken) {
-					tokenList.remove(index + 1);
-					isProcessed = true;
-				}
-			}
+        for (boolean isProcessed = false;; isProcessed = false) {
+            // smash head of line whitespace
+            for (int index = 0; index < tokenList.size() - 1; index++) {
+                if (tokenList.get(index) instanceof BlancoApexNewlineToken
+                        && tokenList.get(index + 1) instanceof BlancoApexWhitespaceToken) {
+                    tokenList.remove(index + 1);
+                    isProcessed = true;
+                }
+            }
 
-			// smash WORD|LITERAL WHITESPACE SPECIAL
-			for (int index = 0; index < tokenList.size() - 2; index++) {
-				if ((tokenList.get(index) instanceof BlancoApexWordToken
-						|| tokenList.get(index) instanceof BlancoApexLiteralToken)
-						&& (tokenList.get(index + 1) instanceof BlancoApexWhitespaceToken
-								|| tokenList.get(index + 1) instanceof BlancoApexNewlineToken)
-						&& tokenList.get(index + 2) instanceof BlancoApexSpecialCharToken) {
-					tokenList.remove(index + 1);
-					isProcessed = true;
-				}
-			}
+            // smash WORD|LITERAL WHITESPACE SPECIAL
+            for (int index = 0; index < tokenList.size() - 2; index++) {
+                if ((tokenList.get(index) instanceof BlancoApexWordToken
+                        || tokenList.get(index) instanceof BlancoApexLiteralToken)
+                        && (tokenList.get(index + 1) instanceof BlancoApexWhitespaceToken
+                                || tokenList.get(index + 1) instanceof BlancoApexNewlineToken)
+                        && tokenList.get(index + 2) instanceof BlancoApexSpecialCharToken) {
+                    tokenList.remove(index + 1);
+                    isProcessed = true;
+                }
+            }
 
-			// smash SPECIAL WHITESPACE SPECIAL
-			for (int index = 0; index < tokenList.size() - 2; index++) {
-				if (tokenList.get(index) instanceof BlancoApexSpecialCharToken
-						&& tokenList.get(index + 1) instanceof BlancoApexWhitespaceToken
-						&& tokenList.get(index + 2) instanceof BlancoApexSpecialCharToken) {
-					tokenList.remove(index + 1);
-					isProcessed = true;
-				}
-			}
+            // smash SPECIAL WHITESPACE SPECIAL
+            for (int index = 0; index < tokenList.size() - 2; index++) {
+                if (tokenList.get(index) instanceof BlancoApexSpecialCharToken
+                        && tokenList.get(index + 1) instanceof BlancoApexWhitespaceToken
+                        && tokenList.get(index + 2) instanceof BlancoApexSpecialCharToken) {
+                    tokenList.remove(index + 1);
+                    isProcessed = true;
+                }
+            }
 
-			// smash SPECIAL WHITESPACE WORD|LITERAL
-			for (int index = 0; index < tokenList.size() - 2; index++) {
-				if (tokenList.get(index) instanceof BlancoApexSpecialCharToken
-						&& tokenList.get(index + 1) instanceof BlancoApexWhitespaceToken
-						&& (tokenList.get(index + 2) instanceof BlancoApexWordToken
-								|| tokenList.get(index + 2) instanceof BlancoApexLiteralToken)) {
-					tokenList.remove(index + 1);
-					isProcessed = true;
-				}
-			}
+            // smash SPECIAL WHITESPACE WORD|LITERAL
+            for (int index = 0; index < tokenList.size() - 2; index++) {
+                if (tokenList.get(index) instanceof BlancoApexSpecialCharToken
+                        && tokenList.get(index + 1) instanceof BlancoApexWhitespaceToken
+                        && (tokenList.get(index + 2) instanceof BlancoApexWordToken
+                                || tokenList.get(index + 2) instanceof BlancoApexLiteralToken)) {
+                    tokenList.remove(index + 1);
+                    isProcessed = true;
+                }
+            }
 
-			// smash trailing whitespace
-			for (int index = 0; index < tokenList.size(); index++) {
-				if (tokenList.get(index) instanceof BlancoApexWhitespaceToken) {
-					final BlancoApexWhitespaceToken look = (BlancoApexWhitespaceToken) tokenList.get(index);
-					if (look.getValue().length() > 1) {
-						look.setValue(" ");
-						isProcessed = true;
-					}
-				}
-			}
+            // smash trailing whitespace
+            for (int index = 0; index < tokenList.size(); index++) {
+                if (tokenList.get(index) instanceof BlancoApexWhitespaceToken) {
+                    final BlancoApexWhitespaceToken look = (BlancoApexWhitespaceToken) tokenList.get(index);
+                    if (look.getValue().length() > 1) {
+                        look.setValue(" ");
+                        isProcessed = true;
+                    }
+                }
+            }
 
-			if (isProcessed == false) {
-				break;
-			}
-		}
-	}
+            if (isProcessed == false) {
+                break;
+            }
+        }
+    }
 }

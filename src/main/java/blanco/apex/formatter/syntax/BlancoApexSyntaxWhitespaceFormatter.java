@@ -28,29 +28,29 @@ import blanco.apex.syntaxparser.token.AbstractBlancoApexSyntaxToken;
  * @author Toshiki Iga
  */
 public class BlancoApexSyntaxWhitespaceFormatter {
-	/**
-	 * main format method.
-	 * 
-	 * @param tokenList
-	 */
-	public void format(final List<BlancoApexToken> tokenList) {
-		internalFormat(tokenList);
-	}
+    /**
+     * main format method.
+     * 
+     * @param tokenList
+     */
+    public void format(final List<BlancoApexToken> tokenList) {
+        internalFormat(tokenList);
+    }
 
-	protected void internalFormat(final List<BlancoApexToken> tokenList) {
-		for (int index = 0; index < tokenList.size(); index++) {
-			if (tokenList.get(index) instanceof AbstractBlancoApexSyntaxToken) {
-				internalFormat(((AbstractBlancoApexSyntaxToken) tokenList.get(index)).getTokenList());
-			}
+    protected void internalFormat(final List<BlancoApexToken> tokenList) {
+        for (int index = 0; index < tokenList.size(); index++) {
+            if (tokenList.get(index) instanceof AbstractBlancoApexSyntaxToken) {
+                internalFormat(((AbstractBlancoApexSyntaxToken) tokenList.get(index)).getTokenList());
+            }
 
-			if (index < tokenList.size() - 1) {
-				// needs +1 size
-				if (tokenList.get(index) instanceof BlancoApexWhitespaceToken) {
-					if (tokenList.get(index + 1) instanceof BlancoApexNewlineToken) {
-						tokenList.remove(index);
-					}
-				}
-			}
-		}
-	}
+            if (index < tokenList.size() - 1) {
+                // needs +1 size
+                if (tokenList.get(index) instanceof BlancoApexWhitespaceToken) {
+                    if (tokenList.get(index + 1) instanceof BlancoApexNewlineToken) {
+                        tokenList.remove(index);
+                    }
+                }
+            }
+        }
+    }
 }

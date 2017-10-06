@@ -42,80 +42,80 @@ import blanco.apex.syntaxparser.BlancoApexSyntaxParser;
  * @author Toshiki Iga
  */
 public class BlancoApexFormatter {
-	protected BlancoApexFormatterSettings settings = null;
+    protected BlancoApexFormatterSettings settings = null;
 
-	public BlancoApexFormatter(final BlancoApexFormatterSettings settings) {
-		this.settings = settings;
-	}
+    public BlancoApexFormatter(final BlancoApexFormatterSettings settings) {
+        this.settings = settings;
+    }
 
-	public final String format(final String sourceString) throws IOException {
-		final BufferedReader reader = new BufferedReader(new StringReader(sourceString));
-		try {
-			return BlancoApexParserUtil.tokenList2String(format(reader));
-		} finally {
-			reader.close();
-		}
-	}
+    public final String format(final String sourceString) throws IOException {
+        final BufferedReader reader = new BufferedReader(new StringReader(sourceString));
+        try {
+            return BlancoApexParserUtil.tokenList2String(format(reader));
+        } finally {
+            reader.close();
+        }
+    }
 
-	public final List<BlancoApexToken> format(final File file) throws IOException {
-		final BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(file), "UTF-8"));
-		try {
-			return format(reader);
-		} finally {
-			reader.close();
-		}
-	}
+    public final List<BlancoApexToken> format(final File file) throws IOException {
+        final BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(file), "UTF-8"));
+        try {
+            return format(reader);
+        } finally {
+            reader.close();
+        }
+    }
 
-	public final List<BlancoApexToken> format(final BufferedReader reader) throws IOException {
-		final List<BlancoApexToken> tokenList = new BlancoApexParser().parse(reader);
-		return format(tokenList);
-	}
+    public final List<BlancoApexToken> format(final BufferedReader reader) throws IOException {
+        final List<BlancoApexToken> tokenList = new BlancoApexParser().parse(reader);
+        return format(tokenList);
+    }
 
-	/**
-	 * main normalize method.
-	 * 
-	 * @param tokenList
-	 */
-	public List<BlancoApexToken> format(final List<BlancoApexToken> tokenList) {
-		/////////////////////////////////////
-		// lexical format
+    /**
+     * main normalize method.
+     * 
+     * @param tokenList
+     */
+    public List<BlancoApexToken> format(final List<BlancoApexToken> tokenList) {
+        /////////////////////////////////////
+        // lexical format
 
-		// process whitespace in lexical formatter.
-		new BlancoApexLexicalWhitespaceFormatter().format(tokenList);
+        // process whitespace in lexical formatter.
+        new BlancoApexLexicalWhitespaceFormatter().format(tokenList);
 
-		if (settings.getSmashWhitespace()) {
-			new BlancoApexLexicalWhitespaceSmasher().smash(tokenList);
-		}
+        if (settings.getSmashWhitespace()) {
+            new BlancoApexLexicalWhitespaceSmasher().smash(tokenList);
+        }
 
-		if (settings.getFormatComma()) {
-			new BlancoApexLexicalCommaFormatter().format(tokenList);
-		}
+        if (settings.getFormatComma()) {
+            new BlancoApexLexicalCommaFormatter().format(tokenList);
+        }
 
-		if (settings.getFormatSemicolon()) {
-			new BlancoApexLexicalSemicolonFormatter().format(tokenList);
-		}
+        if (settings.getFormatSemicolon()) {
+            new BlancoApexLexicalSemicolonFormatter().format(tokenList);
+        }
 
-		/////////////////////////////////////
-		// syntax format
+        /////////////////////////////////////
+        // syntax format
 
-		// convert lexical list to syntax list.
-		final List<BlancoApexToken> syntaxTokenList = new BlancoApexSyntaxParser().parse(tokenList);
+        // convert lexical list to syntax list.
+        final List<BlancoApexToken> syntaxTokenList = new BlancoApexSyntaxParser().parse(tokenList);
 
-		if (settings.getFormatIndent()) {
-			new BlancoApexSyntaxIndentFormatter().format(syntaxTokenList);
-		}
+        if (settings.getFormatIndent()) {
+            new BlancoApexSyntaxIndentFormatter().format(syntaxTokenList);
+        }
 
-		if (settings.getFormatSpecialChar()) {
-			new BlancoApexSyntaxSpecialCharFormatter().format(syntaxTokenList);
-		}
+        if (settings.getFormatSpecialChar()) {
+            new BlancoApexSyntaxSpecialCharFormatter().format(syntaxTokenList);
+        }
 
-		if (settings.getFormatBracket()) {
-			new BlancoApexSyntaxBracketFormatter().format(syntaxTokenList);
-		}
+        if (settings.getFormatBracket()) {
+            new BlancoApexSyntaxBracketFormatter().format(syntaxTokenList);
+        }
 
-		// process whitespace in syntax formatter.
-		new BlancoApexSyntaxWhitespaceFormatter().format(syntaxTokenList);
+        // process whitespace in syntax formatter.
+        new BlancoApexSyntaxWhitespaceFormatter().format(syntaxTokenList);
 
-		return syntaxTokenList;
-	}
+        return syntaxTokenList;
+    }
 }

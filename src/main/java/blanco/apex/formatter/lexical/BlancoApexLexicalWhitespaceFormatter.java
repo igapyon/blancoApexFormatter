@@ -33,76 +33,76 @@ import blanco.apex.parser.token.BlancoApexWhitespaceToken;
  * @author Toshiki Iga
  */
 public class BlancoApexLexicalWhitespaceFormatter {
-	/**
-	 * entry point.
-	 * 
-	 * @param tokenList
-	 */
-	public void format(final List<BlancoApexToken> tokenList) {
-		// process simple normalize.
-		for (BlancoApexToken lookup : tokenList) {
-			// normalize tab and FULL_WIDTH_SPACE
-			normalizeToken(lookup);
-		}
+    /**
+     * entry point.
+     * 
+     * @param tokenList
+     */
+    public void format(final List<BlancoApexToken> tokenList) {
+        // process simple normalize.
+        for (BlancoApexToken lookup : tokenList) {
+            // normalize tab and FULL_WIDTH_SPACE
+            normalizeToken(lookup);
+        }
 
-		//////////////////////////////////////
-		// process relative normalize.
+        //////////////////////////////////////
+        // process relative normalize.
 
-		// remove whitespace only line.
-		for (int index = 1; index < tokenList.size() - 1; index++) {
-			if (tokenList.get(index) instanceof BlancoApexWhitespaceToken) {
-				if (tokenList.get(index - 1) instanceof BlancoApexNewlineToken
-						&& tokenList.get(index + 1) instanceof BlancoApexNewlineToken) {
-					// remove whitespace only line.
-					tokenList.remove(index);
-					index--;
-				}
-			}
-		}
+        // remove whitespace only line.
+        for (int index = 1; index < tokenList.size() - 1; index++) {
+            if (tokenList.get(index) instanceof BlancoApexWhitespaceToken) {
+                if (tokenList.get(index - 1) instanceof BlancoApexNewlineToken
+                        && tokenList.get(index + 1) instanceof BlancoApexNewlineToken) {
+                    // remove whitespace only line.
+                    tokenList.remove(index);
+                    index--;
+                }
+            }
+        }
 
-		// remove whitespace that end line with whitespace.
-		for (int index = 0; index < tokenList.size() - 1; index++) {
-			if (tokenList.get(index) instanceof BlancoApexWhitespaceToken
-					&& tokenList.get(index + 1) instanceof BlancoApexNewlineToken) {
-				// remove whitespace that end line with whitespace.
-				tokenList.remove(index);
-			}
-		}
+        // remove whitespace that end line with whitespace.
+        for (int index = 0; index < tokenList.size() - 1; index++) {
+            if (tokenList.get(index) instanceof BlancoApexWhitespaceToken
+                    && tokenList.get(index + 1) instanceof BlancoApexNewlineToken) {
+                // remove whitespace that end line with whitespace.
+                tokenList.remove(index);
+            }
+        }
 
-		// remove trailing newline
-		for (int index = 0; index < tokenList.size() - 2; index++) {
-			if (tokenList.get(index) instanceof BlancoApexNewlineToken
-					&& tokenList.get(index + 1) instanceof BlancoApexNewlineToken
-					&& tokenList.get(index + 2) instanceof BlancoApexNewlineToken) {
-				// remove whitespace only line.
-				tokenList.remove(index + 2);
-			}
-		}
-	}
+        // remove trailing newline
+        for (int index = 0; index < tokenList.size() - 2; index++) {
+            if (tokenList.get(index) instanceof BlancoApexNewlineToken
+                    && tokenList.get(index + 1) instanceof BlancoApexNewlineToken
+                    && tokenList.get(index + 2) instanceof BlancoApexNewlineToken) {
+                // remove whitespace only line.
+                tokenList.remove(index + 2);
+            }
+        }
+    }
 
-	/**
-	 * normalize tab and FULL_WIDTH_SPACE
-	 * 
-	 * <ul>
-	 * <li>tab into 4 spaces.</li>
-	 * <li>FULL_WIDTH_SPACE into 2 spaces.</li>
-	 * </ul>
-	 * 
-	 * @param lookup
-	 */
-	public static void normalizeToken(final BlancoApexToken lookup) {
-		if (lookup instanceof BlancoApexWhitespaceToken) {
-			final BlancoApexWhitespaceToken token = (BlancoApexWhitespaceToken) lookup;
+    /**
+     * normalize tab and FULL_WIDTH_SPACE
+     * 
+     * <ul>
+     * <li>tab into 4 spaces.</li>
+     * <li>FULL_WIDTH_SPACE into 2 spaces.</li>
+     * </ul>
+     * 
+     * @param lookup
+     */
+    public static void normalizeToken(final BlancoApexToken lookup) {
+        if (lookup instanceof BlancoApexWhitespaceToken) {
+            final BlancoApexWhitespaceToken token = (BlancoApexWhitespaceToken) lookup;
 
-			// tab into 4 spaces.
-			if (token.getValue().indexOf('\t') >= 0) {
-				token.setValue(token.getValue().replaceAll("\t", "    "));
-			}
+            // tab into 4 spaces.
+            if (token.getValue().indexOf('\t') >= 0) {
+                token.setValue(token.getValue().replaceAll("\t", "    "));
+            }
 
-			// FULL_WIDTH_SPACE into 2 spaces.
-			if (token.getValue().indexOf('　') >= 0/* FULL_WIDTH_SPACE */) {
-				token.setValue(token.getValue().replaceAll("　", "  "));
-			}
-		}
-	}
+            // FULL_WIDTH_SPACE into 2 spaces.
+            if (token.getValue().indexOf('　') >= 0/* FULL_WIDTH_SPACE */) {
+                token.setValue(token.getValue().replaceAll("　", "  "));
+            }
+        }
+    }
 }

@@ -16,73 +16,73 @@
 package blanco.apex.formatter;
 
 public class BlancoApexFormatterSettings {
-	/////////////////////
-	// lexical
+    /////////////////////
+    // lexical
 
-	/**
-	 * Smash all whitespace, without comments. It does too much, so it is set as
-	 * false default.
-	 */
-	protected boolean isSmashWhitespace = false;
+    /**
+     * Smash all whitespace, without comments. It does too much, so it is set as
+     * false default.
+     */
+    protected boolean isSmashWhitespace = false;
 
-	protected boolean isFormatComma = true;
+    protected boolean isFormatComma = true;
 
-	protected boolean isFormatSemicolon = true;
+    protected boolean isFormatSemicolon = true;
 
-	/////////////////////
-	// syntax
+    /////////////////////
+    // syntax
 
-	protected boolean isFormatIndent = true;
+    protected boolean isFormatIndent = true;
 
-	protected boolean isFormatSpecialChar = true;
+    protected boolean isFormatSpecialChar = true;
 
-	protected boolean isFormatBracket = true;
+    protected boolean isFormatBracket = true;
 
-	public boolean getFormatComma() {
-		return isFormatComma;
-	}
+    public boolean getFormatComma() {
+        return isFormatComma;
+    }
 
-	public void setFormatComma(boolean isFormatComma) {
-		this.isFormatComma = isFormatComma;
-	}
+    public void setFormatComma(boolean isFormatComma) {
+        this.isFormatComma = isFormatComma;
+    }
 
-	public boolean getFormatSemicolon() {
-		return isFormatSemicolon;
-	}
+    public boolean getFormatSemicolon() {
+        return isFormatSemicolon;
+    }
 
-	public void setFormatSemicolon(boolean isFormatSemicolon) {
-		this.isFormatSemicolon = isFormatSemicolon;
-	}
+    public void setFormatSemicolon(boolean isFormatSemicolon) {
+        this.isFormatSemicolon = isFormatSemicolon;
+    }
 
-	public boolean getFormatIndent() {
-		return isFormatIndent;
-	}
+    public boolean getFormatIndent() {
+        return isFormatIndent;
+    }
 
-	public void setFormatIndent(boolean isFormatIndent) {
-		this.isFormatIndent = isFormatIndent;
-	}
+    public void setFormatIndent(boolean isFormatIndent) {
+        this.isFormatIndent = isFormatIndent;
+    }
 
-	public boolean getFormatSpecialChar() {
-		return isFormatSpecialChar;
-	}
+    public boolean getFormatSpecialChar() {
+        return isFormatSpecialChar;
+    }
 
-	public void setFormatSpecialChar(boolean isFormatSpecialChar) {
-		this.isFormatSpecialChar = isFormatSpecialChar;
-	}
+    public void setFormatSpecialChar(boolean isFormatSpecialChar) {
+        this.isFormatSpecialChar = isFormatSpecialChar;
+    }
 
-	public boolean getFormatBracket() {
-		return isFormatBracket;
-	}
+    public boolean getFormatBracket() {
+        return isFormatBracket;
+    }
 
-	public void setFormatBracket(boolean isFormatBracket) {
-		this.isFormatBracket = isFormatBracket;
-	}
+    public void setFormatBracket(boolean isFormatBracket) {
+        this.isFormatBracket = isFormatBracket;
+    }
 
-	public boolean getSmashWhitespace() {
-		return isSmashWhitespace;
-	}
+    public boolean getSmashWhitespace() {
+        return isSmashWhitespace;
+    }
 
-	public void setSmashWhitespace(boolean isSmashWhitespace) {
-		this.isSmashWhitespace = isSmashWhitespace;
-	}
+    public void setSmashWhitespace(boolean isSmashWhitespace) {
+        this.isSmashWhitespace = isSmashWhitespace;
+    }
 }

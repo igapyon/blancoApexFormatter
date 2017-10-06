@@ -34,95 +34,95 @@ import blanco.apex.syntaxparser.token.BlancoApexSyntaxParenthesisToken;
  * @author Toshiki Iga
  */
 public class BlancoApexSyntaxSpecialCharFormatter {
-	/**
-	 * main format method.
-	 * 
-	 * @param tokenList
-	 */
-	public void format(final List<BlancoApexToken> tokenList) {
-		// process relative normalize.
+    /**
+     * main format method.
+     * 
+     * @param tokenList
+     */
+    public void format(final List<BlancoApexToken> tokenList) {
+        // process relative normalize.
 
-		internalFormat(tokenList, new BlancoApexSyntaxBlockToken());
-	}
+        internalFormat(tokenList, new BlancoApexSyntaxBlockToken());
+    }
 
-	protected void internalFormat(final List<BlancoApexToken> tokenList, final AbstractBlancoApexSyntaxToken parent) {
-		for (int index = 0; index < tokenList.size(); index++) {
-			if (tokenList.get(index) instanceof AbstractBlancoApexSyntaxToken) {
-				internalFormat(((AbstractBlancoApexSyntaxToken) tokenList.get(index)).getTokenList(),
-						((AbstractBlancoApexSyntaxToken) tokenList.get(index)));
-			}
+    protected void internalFormat(final List<BlancoApexToken> tokenList, final AbstractBlancoApexSyntaxToken parent) {
+        for (int index = 0; index < tokenList.size(); index++) {
+            if (tokenList.get(index) instanceof AbstractBlancoApexSyntaxToken) {
+                internalFormat(((AbstractBlancoApexSyntaxToken) tokenList.get(index)).getTokenList(),
+                        ((AbstractBlancoApexSyntaxToken) tokenList.get(index)));
+            }
 
-			if (tokenList.get(index) instanceof BlancoApexSpecialCharToken) {
-				final BlancoApexSpecialCharToken specialChar = (BlancoApexSpecialCharToken) tokenList.get(index);
-				if (BlancoApexSyntaxUtil.isIncludedIgnoreCase(specialChar.getValue(),
-						new String[] { "=", "==", "<=", ">=", "!=", "||", "&&", "+", "-", "*", "/",
-								"?"/* , ":" care about label */ , "+=", "-=", "=>" })) {
-					if (index < tokenList.size() - 1) {
-						final BlancoApexToken rightToken = tokenList.get(index + 1);
-						if (rightToken instanceof BlancoApexWordToken //
-								|| rightToken instanceof BlancoApexLiteralToken //
-								|| rightToken instanceof BlancoApexSyntaxParenthesisToken) {
-							tokenList.add(index + 1, new BlancoApexWhitespaceToken(" ", -1));
-						}
-					}
-					if (index > 0) {
-						final BlancoApexToken leftToken = tokenList.get(index - 1);
-						if (leftToken instanceof BlancoApexWordToken //
-								|| leftToken instanceof BlancoApexLiteralToken //
-								|| leftToken instanceof BlancoApexSyntaxParenthesisToken
-								|| leftToken instanceof BlancoApexSyntaxBoxBracketsToken) {
-							tokenList.add(index, new BlancoApexWhitespaceToken(" ", -1));
-						}
-					}
-				}
+            if (tokenList.get(index) instanceof BlancoApexSpecialCharToken) {
+                final BlancoApexSpecialCharToken specialChar = (BlancoApexSpecialCharToken) tokenList.get(index);
+                if (BlancoApexSyntaxUtil.isIncludedIgnoreCase(specialChar.getValue(),
+                        new String[] { "=", "==", "<=", ">=", "!=", "||", "&&", "+", "-", "*", "/",
+                                "?"/* , ":" care about label */ , "+=", "-=", "=>" })) {
+                    if (index < tokenList.size() - 1) {
+                        final BlancoApexToken rightToken = tokenList.get(index + 1);
+                        if (rightToken instanceof BlancoApexWordToken //
+                                || rightToken instanceof BlancoApexLiteralToken //
+                                || rightToken instanceof BlancoApexSyntaxParenthesisToken) {
+                            tokenList.add(index + 1, new BlancoApexWhitespaceToken(" ", -1));
+                        }
+                    }
+                    if (index > 0) {
+                        final BlancoApexToken leftToken = tokenList.get(index - 1);
+                        if (leftToken instanceof BlancoApexWordToken //
+                                || leftToken instanceof BlancoApexLiteralToken //
+                                || leftToken instanceof BlancoApexSyntaxParenthesisToken
+                                || leftToken instanceof BlancoApexSyntaxBoxBracketsToken) {
+                            tokenList.add(index, new BlancoApexWhitespaceToken(" ", -1));
+                        }
+                    }
+                }
 
-				// workaround for non supportig generics.
-				if (BlancoApexSyntaxUtil.isIncludedIgnoreCase(specialChar.getValue(), new String[] { ">" })) {
-					if (index < tokenList.size() - 1) {
-						final BlancoApexToken rightToken = tokenList.get(index + 1);
-						if (rightToken instanceof BlancoApexWordToken //
-								|| rightToken instanceof BlancoApexLiteralToken //
-						/*
-						 * || rightToken instanceof
-						 * BlancoApexSyntaxParenthesisToken workaround for non
-						 * generics support.
-						 */) {
-							tokenList.add(index + 1, new BlancoApexWhitespaceToken(" ", -1));
-						}
-					}
-				}
-				// workaround for non supportig generics.
-				if (BlancoApexSyntaxUtil.isIncludedIgnoreCase(specialChar.getValue(), new String[] { "<" })) {
-					if (index > 0) {
-						final BlancoApexToken leftToken = tokenList.get(index - 1);
-						if (/*
-							 * leftToken instanceof BlancoApexWordToken // ||
-							 * workaround for non support generics.
-							 */
-						leftToken instanceof BlancoApexLiteralToken //
-								|| leftToken instanceof BlancoApexSyntaxParenthesisToken) {
-							tokenList.add(index, new BlancoApexWhitespaceToken(" ", -1));
-						}
-					}
-				}
+                // workaround for non supportig generics.
+                if (BlancoApexSyntaxUtil.isIncludedIgnoreCase(specialChar.getValue(), new String[] { ">" })) {
+                    if (index < tokenList.size() - 1) {
+                        final BlancoApexToken rightToken = tokenList.get(index + 1);
+                        if (rightToken instanceof BlancoApexWordToken //
+                                || rightToken instanceof BlancoApexLiteralToken //
+                        /*
+                         * || rightToken instanceof
+                         * BlancoApexSyntaxParenthesisToken workaround for non
+                         * generics support.
+                         */) {
+                            tokenList.add(index + 1, new BlancoApexWhitespaceToken(" ", -1));
+                        }
+                    }
+                }
+                // workaround for non supportig generics.
+                if (BlancoApexSyntaxUtil.isIncludedIgnoreCase(specialChar.getValue(), new String[] { "<" })) {
+                    if (index > 0) {
+                        final BlancoApexToken leftToken = tokenList.get(index - 1);
+                        if (/*
+                             * leftToken instanceof BlancoApexWordToken // ||
+                             * workaround for non support generics.
+                             */
+                        leftToken instanceof BlancoApexLiteralToken //
+                                || leftToken instanceof BlancoApexSyntaxParenthesisToken) {
+                            tokenList.add(index, new BlancoApexWhitespaceToken(" ", -1));
+                        }
+                    }
+                }
 
-				// workaround for method def []
-				if (BlancoApexSyntaxUtil.isIncludedIgnoreCase(specialChar.getValue(), new String[] { "]" })) {
-					if (index < tokenList.size() - 1) {
-						final BlancoApexToken rightToken = tokenList.get(index + 1);
-						if (rightToken instanceof BlancoApexWordToken) {
-							tokenList.add(index + 1, new BlancoApexWhitespaceToken(" ", -1));
-						}
-					}
-				}
-			} else if (tokenList.get(index) instanceof BlancoApexSyntaxBoxBracketsToken) {
-				if (index < tokenList.size() - 1) {
-					final BlancoApexToken rightToken = tokenList.get(index + 1);
-					if (rightToken instanceof BlancoApexWordToken) {
-						tokenList.add(index + 1, new BlancoApexWhitespaceToken(" ", -1));
-					}
-				}
-			}
-		}
-	}
+                // workaround for method def []
+                if (BlancoApexSyntaxUtil.isIncludedIgnoreCase(specialChar.getValue(), new String[] { "]" })) {
+                    if (index < tokenList.size() - 1) {
+                        final BlancoApexToken rightToken = tokenList.get(index + 1);
+                        if (rightToken instanceof BlancoApexWordToken) {
+                            tokenList.add(index + 1, new BlancoApexWhitespaceToken(" ", -1));
+                        }
+                    }
+                }
+            } else if (tokenList.get(index) instanceof BlancoApexSyntaxBoxBracketsToken) {
+                if (index < tokenList.size() - 1) {
+                    final BlancoApexToken rightToken = tokenList.get(index + 1);
+                    if (rightToken instanceof BlancoApexWordToken) {
+                        tokenList.add(index + 1, new BlancoApexWhitespaceToken(" ", -1));
+                    }
+                }
+            }
+        }
+    }
 }

@@ -28,26 +28,26 @@ import blanco.apex.parser.token.BlancoApexWhitespaceToken;
  * @author Toshiki Iga
  */
 public class BlancoApexLexicalCommaFormatter {
-	/**
-	 * main normalize method.
-	 * 
-	 * @param tokenList
-	 */
-	public void format(final List<BlancoApexToken> tokenList) {
-		// process relative normalize.
+    /**
+     * main normalize method.
+     * 
+     * @param tokenList
+     */
+    public void format(final List<BlancoApexToken> tokenList) {
+        // process relative normalize.
 
-		// ,a to , a
-		for (int index = 0; index < tokenList.size() - 1; index++) {
-			final BlancoApexToken centerToken = tokenList.get(index);
-			final BlancoApexToken rightToken = tokenList.get(index + 1);
-			if (centerToken instanceof BlancoApexSpecialCharToken && centerToken.getValue().equalsIgnoreCase(",")) {
-				if (false == rightToken instanceof BlancoApexWhitespaceToken
-						&& false == rightToken instanceof BlancoApexNewlineToken) {
-					// adding whitespace
-					final BlancoApexWhitespaceToken newToken = new BlancoApexWhitespaceToken(" ", -1);
-					tokenList.add(index + 1, newToken);
-				}
-			}
-		}
-	}
+        // ,a to , a
+        for (int index = 0; index < tokenList.size() - 1; index++) {
+            final BlancoApexToken centerToken = tokenList.get(index);
+            final BlancoApexToken rightToken = tokenList.get(index + 1);
+            if (centerToken instanceof BlancoApexSpecialCharToken && centerToken.getValue().equalsIgnoreCase(",")) {
+                if (false == rightToken instanceof BlancoApexWhitespaceToken
+                        && false == rightToken instanceof BlancoApexNewlineToken) {
+                    // adding whitespace
+                    final BlancoApexWhitespaceToken newToken = new BlancoApexWhitespaceToken(" ", -1);
+                    tokenList.add(index + 1, newToken);
+                }
+            }
+        }
+    }
 }

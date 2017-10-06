@@ -28,24 +28,24 @@ import blanco.apex.parser.token.BlancoApexWhitespaceToken;
  * @author Toshiki Iga
  */
 public class BlancoApexLexicalSemicolonFormatter {
-	/**
-	 * main format method.
-	 * 
-	 * @param tokenList
-	 */
-	public void format(final List<BlancoApexToken> tokenList) {
-		// ;a to ; a
-		for (int index = 0; index < tokenList.size() - 1; index++) {
-			final BlancoApexToken centerToken = tokenList.get(index);
-			final BlancoApexToken rightToken = tokenList.get(index + 1);
-			if (centerToken instanceof BlancoApexSpecialCharToken && centerToken.getValue().equalsIgnoreCase(";")) {
-				if (false == rightToken instanceof BlancoApexWhitespaceToken
-						&& false == rightToken instanceof BlancoApexNewlineToken) {
-					// adding whitespace
-					final BlancoApexWhitespaceToken newToken = new BlancoApexWhitespaceToken(" ", -1);
-					tokenList.add(index + 1, newToken);
-				}
-			}
-		}
-	}
+    /**
+     * main format method.
+     * 
+     * @param tokenList
+     */
+    public void format(final List<BlancoApexToken> tokenList) {
+        // ;a to ; a
+        for (int index = 0; index < tokenList.size() - 1; index++) {
+            final BlancoApexToken centerToken = tokenList.get(index);
+            final BlancoApexToken rightToken = tokenList.get(index + 1);
+            if (centerToken instanceof BlancoApexSpecialCharToken && centerToken.getValue().equalsIgnoreCase(";")) {
+                if (false == rightToken instanceof BlancoApexWhitespaceToken
+                        && false == rightToken instanceof BlancoApexNewlineToken) {
+                    // adding whitespace
+                    final BlancoApexWhitespaceToken newToken = new BlancoApexWhitespaceToken(" ", -1);
+                    tokenList.add(index + 1, newToken);
+                }
+            }
+        }
+    }
 }
