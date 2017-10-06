@@ -32,6 +32,7 @@ import blanco.apex.syntaxparser.token.BlancoApexSyntaxIfStatementToken;
 import blanco.apex.syntaxparser.token.BlancoApexSyntaxMethodToken;
 import blanco.apex.syntaxparser.token.BlancoApexSyntaxParenthesisToken;
 import blanco.apex.syntaxparser.token.BlancoApexSyntaxPropertyToken;
+import blanco.apex.syntaxparser.token.BlancoApexSyntaxSOQLToken;
 import blanco.apex.syntaxparser.token.BlancoApexSyntaxStatementToken;
 import blanco.apex.syntaxparser.token.BlancoApexSyntaxWhileStatementToken;
 
@@ -60,14 +61,11 @@ public class BlancoApexSyntaxIndentFormatter {
 						|| tokenList.get(index) instanceof BlancoApexSyntaxParenthesisToken) {
 					internalFormat(((AbstractBlancoApexSyntaxToken) tokenList.get(index)).getTokenList(),
 							((AbstractBlancoApexSyntaxToken) tokenList.get(index)), indentLevel + 1);
-				} else if (tokenList.get(index) instanceof BlancoApexSyntaxBoxBracketsToken) {
-					BlancoApexSyntaxBoxBracketsToken box = (BlancoApexSyntaxBoxBracketsToken) tokenList.get(index);
-					if (box.getIsSOQL()) {
-						// do nothing about SOQL
-					} else {
-						internalFormat(((AbstractBlancoApexSyntaxToken) tokenList.get(index)).getTokenList(),
-								((AbstractBlancoApexSyntaxToken) tokenList.get(index)), indentLevel + 1);
-					}
+                } else if (tokenList.get(index) instanceof BlancoApexSyntaxSOQLToken) {
+                    // do nothing about SOQL
+                } else if (tokenList.get(index) instanceof BlancoApexSyntaxBoxBracketsToken) {
+					internalFormat(((AbstractBlancoApexSyntaxToken) tokenList.get(index)).getTokenList(),
+							((AbstractBlancoApexSyntaxToken) tokenList.get(index)), indentLevel + 1);
 				} else {
 					internalFormat(((AbstractBlancoApexSyntaxToken) tokenList.get(index)).getTokenList(),
 							((AbstractBlancoApexSyntaxToken) tokenList.get(index)), indentLevel);
