@@ -27,7 +27,9 @@ public class BlancoApexFormatterConstants {
     public static final String VERSION = "v1.1";
 
     /**
-     * Version String of blancoApexFormatter.
+     * Get version String of blancoApexFormatter.
+     * 
+     * @return Version string.
      */
     public static String getVersion() {
         return VERSION;
