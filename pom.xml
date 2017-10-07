@@ -4,7 +4,7 @@
     <groupId>jp.igapyon.blanco.apex.formatter</groupId>
     <artifactId>blancoApexFormatter</artifactId>
     <packaging>jar</packaging>
-    <version>1.0</version>
+    <version>1.1.0</version>
     <name>blancoApexFormatter</name>
     <url>http://maven.apache.org</url>
 
@@ -16,7 +16,7 @@
         <dependency>
             <groupId>jp.igapyon.blanco.apex.syntaxparser</groupId>
             <artifactId>blancoApexSyntaxParser</artifactId>
-            <version>1.1.1</version>
+            <version>1.2.4</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/junit/junit -->
