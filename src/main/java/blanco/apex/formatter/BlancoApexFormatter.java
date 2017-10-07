@@ -72,9 +72,10 @@ public class BlancoApexFormatter {
     }
 
     /**
-     * main normalize method.
+     * main method for formatter.
      * 
      * @param tokenList
+     *            List of token of code.
      */
     public List<BlancoApexToken> format(final List<BlancoApexToken> tokenList) {
         /////////////////////////////////////
