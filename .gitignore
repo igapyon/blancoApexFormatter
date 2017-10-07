@@ -1,3 +1,5 @@
 /bin/
 /blancoApexFormatter.zip
 /target/
+/pom.xml.releaseBackup
+/release.properties
