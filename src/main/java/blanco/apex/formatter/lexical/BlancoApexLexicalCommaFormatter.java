@@ -23,15 +23,16 @@ import blanco.apex.parser.token.BlancoApexToken;
 import blanco.apex.parser.token.BlancoApexWhitespaceToken;
 
 /**
- * Format comma.
+ * Comma formatter.
  * 
  * @author Toshiki Iga
  */
 public class BlancoApexLexicalCommaFormatter {
     /**
-     * main normalize method.
+     * main format method.
      * 
      * @param tokenList
+     *            List of token to format.
      */
     public void format(final List<BlancoApexToken> tokenList) {
         // process relative normalize.

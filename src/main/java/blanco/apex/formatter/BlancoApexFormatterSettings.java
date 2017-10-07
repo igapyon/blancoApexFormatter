@@ -25,22 +25,37 @@ public class BlancoApexFormatterSettings {
     // lexical
 
     /**
-     * Smash all whitespace, without comments. It does too much, so it is set as
-     * false default.
+     * [lexical] Smash all whitespace, without comments. It does too much, so it
+     * is set as false default.
      */
     protected boolean isSmashWhitespace = false;
 
+    /**
+     * [lexical] Format comma or not.
+     */
     protected boolean isFormatComma = true;
 
+    /**
+     * [lexical] Format semicolon or not.
+     */
     protected boolean isFormatSemicolon = true;
 
     /////////////////////
     // syntax
 
+    /**
+     * [syntax] format indent or not.
+     */
     protected boolean isFormatIndent = true;
 
+    /**
+     * [syntax] format special char or not.
+     */
     protected boolean isFormatSpecialChar = true;
 
+    /**
+     * [syntax] format bracket or not.
+     */
     protected boolean isFormatBracket = true;
 
     public boolean getFormatComma() {

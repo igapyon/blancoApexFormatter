@@ -23,7 +23,7 @@ import blanco.apex.parser.token.BlancoApexWhitespaceToken;
 import blanco.apex.syntaxparser.token.AbstractBlancoApexSyntaxToken;
 
 /**
- * Format trailing whitespace.
+ * Trailing whitespace formatter.
  * 
  * @author Toshiki Iga
  */

@@ -22,7 +22,7 @@ import blanco.apex.parser.token.BlancoApexToken;
 import blanco.apex.parser.token.BlancoApexWhitespaceToken;
 
 /**
- * Lexical Format whitespaces. tab into 4 spaces and FULL_WIDTH_SPACE into 2
+ * Lexical whitespace formatter. tab into 4 spaces and FULL_WIDTH_SPACE into 2
  * spaces.
  * 
  * <ul>

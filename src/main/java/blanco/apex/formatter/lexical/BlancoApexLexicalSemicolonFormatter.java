@@ -23,7 +23,7 @@ import blanco.apex.parser.token.BlancoApexToken;
 import blanco.apex.parser.token.BlancoApexWhitespaceToken;
 
 /**
- * Format semicolon.
+ * Semicolon formatter.
  * 
  * @author Toshiki Iga
  */

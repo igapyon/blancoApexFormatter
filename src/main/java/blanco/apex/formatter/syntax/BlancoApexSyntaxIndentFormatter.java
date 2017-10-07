@@ -37,7 +37,7 @@ import blanco.apex.syntaxparser.token.BlancoApexSyntaxStatementToken;
 import blanco.apex.syntaxparser.token.BlancoApexSyntaxWhileStatementToken;
 
 /**
- * Format indent.
+ * Syntax indent formatter.
  * 
  * @author Toshiki Iga
  */

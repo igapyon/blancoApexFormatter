@@ -25,7 +25,7 @@ import blanco.apex.parser.token.BlancoApexWhitespaceToken;
 import blanco.apex.parser.token.BlancoApexWordToken;
 
 /**
- * Smash whitespaces. for ease of test purpose.
+ * Smash whitespace formatter. will be useful for test purpose.
  * 
  * @author Toshiki Iga
  */

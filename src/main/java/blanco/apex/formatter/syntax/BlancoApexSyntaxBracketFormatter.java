@@ -27,7 +27,7 @@ import blanco.apex.syntaxparser.token.BlancoApexSyntaxBlockToken;
 import blanco.apex.syntaxparser.token.BlancoApexSyntaxParenthesisToken;
 
 /**
- * Format indent.
+ * Bracket formatter.
  * 
  * @author Toshiki Iga
  */
