@@ -98,7 +98,6 @@ public class BlancoApexFormatter {
      * 
      * @param reader
      *            Source reader.
-     * @return
      * @return Formatted list of token.
      * @throws IOException
      *             I/O Exception.
@@ -117,6 +116,7 @@ public class BlancoApexFormatter {
      * 
      * @param tokenList
      *            List of token of code.
+     * @return Formatted list of token.
      */
     public List<BlancoApexToken> format(final List<BlancoApexToken> tokenList) {
         /////////////////////////////////////

@@ -90,6 +90,7 @@ public class BlancoApexLexicalWhitespaceFormatter {
      * </ul>
      * 
      * @param lookup
+     *            Target token to normalize.
      */
     public static void normalizeToken(final BlancoApexToken lookup) {
         if (lookup instanceof BlancoApexWhitespaceToken) {
