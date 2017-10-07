@@ -29,9 +29,10 @@ import blanco.apex.syntaxparser.token.AbstractBlancoApexSyntaxToken;
  */
 public class BlancoApexSyntaxWhitespaceFormatter {
     /**
-     * main format method.
+     * Format given list of token.
      * 
      * @param tokenList
+     *            List of token to format.
      */
     public void format(final List<BlancoApexToken> tokenList) {
         internalFormat(tokenList);

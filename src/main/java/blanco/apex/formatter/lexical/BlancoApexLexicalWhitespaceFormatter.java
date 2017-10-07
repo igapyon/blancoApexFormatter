@@ -34,9 +34,10 @@ import blanco.apex.parser.token.BlancoApexWhitespaceToken;
  */
 public class BlancoApexLexicalWhitespaceFormatter {
     /**
-     * entry point.
+     * Format given list of token.
      * 
      * @param tokenList
+     *            List of token to format.
      */
     public void format(final List<BlancoApexToken> tokenList) {
         // process simple normalize.

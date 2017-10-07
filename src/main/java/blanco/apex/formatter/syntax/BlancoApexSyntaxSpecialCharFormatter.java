@@ -35,9 +35,10 @@ import blanco.apex.syntaxparser.token.BlancoApexSyntaxParenthesisToken;
  */
 public class BlancoApexSyntaxSpecialCharFormatter {
     /**
-     * main format method.
+     * Format given list of token.
      * 
      * @param tokenList
+     *            List of token to format.
      */
     public void format(final List<BlancoApexToken> tokenList) {
         // process relative normalize.

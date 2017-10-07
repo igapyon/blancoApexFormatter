@@ -29,7 +29,7 @@ import blanco.apex.parser.token.BlancoApexWhitespaceToken;
  */
 public class BlancoApexLexicalCommaFormatter {
     /**
-     * main format method.
+     * Format given list of token.
      * 
      * @param tokenList
      *            List of token to format.

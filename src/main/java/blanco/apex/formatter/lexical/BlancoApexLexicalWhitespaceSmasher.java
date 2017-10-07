@@ -31,9 +31,10 @@ import blanco.apex.parser.token.BlancoApexWordToken;
  */
 public class BlancoApexLexicalWhitespaceSmasher {
     /**
-     * entry point.
+     * Format given list of token.
      * 
      * @param tokenList
+     *            List of token to format.
      */
     public void smash(final List<BlancoApexToken> tokenList) {
 

@@ -109,7 +109,11 @@ public class BlancoApexFormatter {
     }
 
     /**
-     * main method for formatter.
+     * Format given list of token.
+     * 
+     * <p>
+     * This is main method of formatter.
+     * </p>
      * 
      * @param tokenList
      *            List of token of code.
