@@ -15,6 +15,11 @@
  */
 package blanco.apex.formatter;
 
+/**
+ * Settings info for blancoApexFormatter.
+ * 
+ * @author Toshiki Iga
+ */
 public class BlancoApexFormatterSettings {
     /////////////////////
     // lexical

@@ -15,6 +15,11 @@
  */
 package blanco.apex.formatter;
 
+/**
+ * Constants of blancoApexFormatter.
+ * 
+ * @author Toshiki Iga
+ */
 public class BlancoApexFormatterConstants {
     /**
      * Version String of blancoApexFormatter. ex. v1.1.
