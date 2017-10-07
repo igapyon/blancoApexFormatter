@@ -42,12 +42,30 @@ import blanco.apex.syntaxparser.BlancoApexSyntaxParser;
  * @author Toshiki Iga
  */
 public class BlancoApexFormatter {
+    /**
+     * Setting of format.
+     */
     protected BlancoApexFormatterSettings settings = null;
 
+    /**
+     * Constructor of code formatter.
+     * 
+     * @param settings
+     *            Settings of format.
+     */
     public BlancoApexFormatter(final BlancoApexFormatterSettings settings) {
         this.settings = settings;
     }
 
+    /**
+     * Format given source code.
+     * 
+     * @param sourceString
+     *            Source code string.
+     * @return Formatted source code.
+     * @throws IOException
+     *             I/O Exception.
+     */
     public final String format(final String sourceString) throws IOException {
         final BufferedReader reader = new BufferedReader(new StringReader(sourceString));
         try {
@@ -57,6 +75,15 @@ public class BlancoApexFormatter {
         }
     }
 
+    /**
+     * Format given source file.
+     * 
+     * @param file
+     *            Source file.
+     * @return Formatted list of token.
+     * @throws IOException
+     *             I/O Exception.
+     */
     public final List<BlancoApexToken> format(final File file) throws IOException {
         final BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(file), "UTF-8"));
         try {
@@ -66,6 +93,16 @@ public class BlancoApexFormatter {
         }
     }
 
+    /**
+     * Format given source reader.
+     * 
+     * @param reader
+     *            Source reader.
+     * @return
+     * @return Formatted list of token.
+     * @throws IOException
+     *             I/O Exception.
+     */
     public final List<BlancoApexToken> format(final BufferedReader reader) throws IOException {
         final List<BlancoApexToken> tokenList = new BlancoApexParser().parse(reader);
         return format(tokenList);
