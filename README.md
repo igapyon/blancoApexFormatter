@@ -36,6 +36,40 @@ public without sharing class MySimpleTest {
 There is several way to use blancoApexFormatter.
 My currently recommendation is to use blancoApexFormatterCli. blancoApexFormatterCli provides Ant Task and command line interface. See below:
 
+### Maven Plugin
+
+```xml
+            <plugin>
+                <groupId>jp.igapyon.blanco.apex.formatter.plugin</groupId>
+                <artifactId>blancoApexFormatterPlugin</artifactId>
+                <version>1.0.3</version>
+                <configuration>
+                    <input>${project.basedir}/src/main/apex</input>
+                    <output>${project.build.directory}/apex-formatted</output>
+                    <verbose>false</verbose>
+                    <isSmashWhitespace>false</isSmashWhitespace>
+                    <isFormatComma>true</isFormatComma>
+                    <isFormatSemicolon>true</isFormatSemicolon>
+                    <isFormatIndent>true</isFormatIndent>
+                    <isFormatSpecialChar>true</isFormatSpecialChar>
+                    <isFormatBracket>true</isFormatBracket>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>format</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+```
+
+Running Maven Plugin of blancoApexFormatter is like below:
+
+```sh
+mvn jp.igapyon.blanco.apex.formatter.plugin:blancoApexFormatterPlugin:1.0.3:format
+```
+
 ### Ant task
 
 Prepare Ant taskdef on your build.xml like below:
@@ -66,8 +100,6 @@ Run Ant task of blancoApexFormatter like below:
 
 ### Command line
 
-#### how to run in command line
-
 ```
 java -cp blancoApexFormatterCli.jar:lib/blancoApexFormatter.jar:lib/blancoApexSyntaxParser.jar:lib/blancoApexParser.jar:lib/apache/commons-cli-1.3.1.jar:lib/apache/commons-io-2.5.jar blanco.apex.formatter.cli.BlancoApexFormatterCli -i /home/tosiki/workspace/apex-lang/src.apex -o /home/tosiki/workspace/apex-lang/src.apex.output
 ```
@@ -91,11 +123,6 @@ usage: BlancoApexFormatterCli
 ## download
 
 You can download latest version of blancoApexFormatter from URL below:
-
-### binary distribution
-
-* https://github.com/igapyon/blancoApexFormatterCli/releases
-  * 'Source code (zip)' contains binary jar files of blancoApexFormatter.
 
 ### source distribution
 
