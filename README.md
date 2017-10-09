@@ -34,7 +34,7 @@ public without sharing class MySimpleTest {
 ## usage
 
 There is several way to use blancoApexFormatter.
-My currently recommendation is to use blancoApexFormatterCli. blancoApexFormatterCli provides Ant Task and command line interface. See below:
+My currently recommendation is to use blancoApexFormatterPlugin. blancoApexFormatter provides Maven Plugin, Ant Task and command line interface. See below:
 
 ### Maven Plugin
 
